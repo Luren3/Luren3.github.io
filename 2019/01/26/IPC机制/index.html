@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。 Android  开启多进程模式在AndroidMenifest中为。四大组件指定 android:proccess">
+<meta name="description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="若只如初见">
+<meta property="og:title" content="IPC机制">
 <meta property="og:url" content="http://yoursite.com/2019/01/26/IPC机制/index.html">
 <meta property="og:site_name" content="若只如初见">
-<meta property="og:description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。 Android  开启多进程模式在AndroidMenifest中为。四大组件指定 android:proccess">
+<meta property="og:description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://uploader.shimo.im/f/zsk5D2fh8EgeQO5s.png!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/gOYaP8k7qYAk6Fgn.png!thumbnail">
@@ -92,10 +92,10 @@
 <meta property="og:image" content="https://uploader.shimo.im/f/kiPOWWAttTMyZSGy.png!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/ybo1nqKr2K4TUBW9.png!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/S1b9N0iOEnglJN3O.png!thumbnail">
-<meta property="og:updated_time" content="2019-01-26T07:33:56.662Z">
+<meta property="og:updated_time" content="2019-01-28T11:25:27.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="若只如初见">
-<meta name="twitter:description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。 Android  开启多进程模式在AndroidMenifest中为。四大组件指定 android:proccess">
+<meta name="twitter:title" content="IPC机制">
+<meta name="twitter:description" content="IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
 <meta name="twitter:image" content="https://uploader.shimo.im/f/zsk5D2fh8EgeQO5s.png!thumbnail">
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <title> | 若只如初见</title>
+  <title>IPC机制 | 若只如初见</title>
   
 
 
@@ -203,16 +203,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            分类
           </a>
         </li>
       
@@ -308,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">IPC机制</h1>
         
 
         <div class="post-meta">
@@ -331,6 +321,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -340,7 +352,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2019/01/26/IPC机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/26/IPC机制/" itemprop="commentCount"></span>
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/01/26/IPC机制/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -369,6 +381,7 @@
 
       
         <p>IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；<br>说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。</p>
+<a id="more"></a>
 <h2 id="Android-开启多进程模式"><a href="#Android-开启多进程模式" class="headerlink" title="Android  开启多进程模式"></a><strong>Android  开启多进程模式</strong></h2><p>在AndroidMenifest中为。四大组件指定 <strong>android:proccess</strong> 属性，这是唯一一种常规开启多进程的方法。如下图所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//用 : 命名，当前完整进程名要加上包名，表示当前应用的私有进程</span><br><span class="line">&lt;activity </span><br><span class="line">        android:name=&quot;.TestActivityOne&quot;</span><br><span class="line">        android:process=&quot;:test1&quot;/&gt;</span><br><span class="line">//不以 : 为命名的进程属于全局进程，其他应用可以通过ShareUID方式和它跑在同一进程        </span><br><span class="line">&lt;activity </span><br><span class="line">        android:name=&quot;.TestActivityTwo&quot;</span><br><span class="line">        android:process=&quot;com.test.test2&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
 <p>还有一种非常规的方法，就是通过JNI在native层去fork一个新进程</p>
 <p><strong>多进程会造成几个方面的问题：</strong></p>
@@ -496,12 +509,9 @@
 
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
 
   
@@ -560,6 +570,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             
@@ -761,26 +780,6 @@
 
   
 
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/01/26/IPC机制/';
-          this.page.identifier = '2019/01/26/IPC机制/';
-          this.page.title = '';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
 
   
 
