@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Flutter]]></title>
-    <url>%2F2019%2F01%2F29%2FFlutter%2F</url>
-    <content type="text"><![CDATA[Flutter框架结构 Flutter Framework这是一个纯 Dart实现的 SDK，它实现了一套基础库，自底向上，我们来简单介绍一下： 底下两层（Foundation和Animation、Painting、Gestures）在Google的一些视频中被合并为一个dart UI层，对应的是Flutter中的dart:ui包，它是Flutter引擎暴露的底层UI库，提供动画、手势及绘制能力。 Rendering层，这一层是一个抽象的布局层，它依赖于dart UI层，Rendering层会构建一个UI树，当UI树有变化时，会计算出有变化的部分，然后更新UI树，最终将UI树绘制到屏幕上，这个过程类似于React中的虚拟DOM。Rendering层可以说是Flutter UI框架最核心的部分，它除了确定每个UI元素的位置、大小之外还要进行坐标变换、绘制(调用底层dart:ui)。 Widgets层是Flutter提供的的一套基础组件库，在基础组件库之上，Flutter还提供了 Material 和Cupertino两种视觉风格的组件库。而我们Flutter开发的大多数场景，只是和这两层打交道。Flutter Engine这是一个纯 C++实现的 SDK，其中包括了 Skia引擎、Dart运行时、文字排版引擎等。在代码调用 dart:ui库时，调用最终会走到Engine层，然后实现真正的绘制逻辑。]]></content>
-      <categories>
-        <category>Flutter</category>
-      </categories>
-  </entry>
-  <entry>
     <title><![CDATA[环形链表]]></title>
     <url>%2F2019%2F01%2F29%2F%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：141 给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 示例1：123输入：head = [3,2,0,-4], pos = 1输出：true解释：链表中有一个环，其尾部连接到第二个节点。 示例2：123输入：head = [1,2], pos = 0输出：true解释：链表中有一个环，其尾部连接到第一个节点。 示例3：123输入：head = [1], pos = -1输出：false解释：链表中没有环。 进阶：你能用 O(1)（即，常量）内存解决此问题吗 我的解答：12345678910111213public static boolean hasCycle(ListNode head) &#123; if (head == null || head.next == null) return false; ListNode slow = head; ListNode fast = head.next; while (slow != fast) &#123; if (fast == null || fast.next == null) &#123; return false; &#125; slow = slow.next; fast = fast.next.next; &#125; return true;&#125;]]></content>
@@ -301,6 +293,14 @@
       <tags>
         <tag>数组</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Flutter]]></title>
+    <url>%2F2019%2F01%2F05%2FFlutter%2F</url>
+    <content type="text"><![CDATA[Flutter框架结构 Flutter Framework这是一个纯 Dart实现的 SDK，它实现了一套基础库，自底向上，我们来简单介绍一下： 底下两层（Foundation和Animation、Painting、Gestures）在Google的一些视频中被合并为一个dart UI层，对应的是Flutter中的dart:ui包，它是Flutter引擎暴露的底层UI库，提供动画、手势及绘制能力。 Rendering层，这一层是一个抽象的布局层，它依赖于dart UI层，Rendering层会构建一个UI树，当UI树有变化时，会计算出有变化的部分，然后更新UI树，最终将UI树绘制到屏幕上，这个过程类似于React中的虚拟DOM。Rendering层可以说是Flutter UI框架最核心的部分，它除了确定每个UI元素的位置、大小之外还要进行坐标变换、绘制(调用底层dart:ui)。 Widgets层是Flutter提供的的一套基础组件库，在基础组件库之上，Flutter还提供了 Material 和Cupertino两种视觉风格的组件库。而我们Flutter开发的大多数场景，只是和这两层打交道。Flutter Engine这是一个纯 C++实现的 SDK，其中包括了 Skia引擎、Dart运行时、文字排版引擎等。在代码调用 dart:ui库时，调用最终会走到Engine层，然后实现真正的绘制逻辑。]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[存在重复元素]]></title>
