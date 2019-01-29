@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="字符串,">
 
 
 
@@ -79,24 +79,18 @@
 
 
 
-<meta name="description" content="本文内容来自《Android开发艺术探索》 IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
+<meta name="description" content="LeetCode 题号：14 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。">
+<meta name="keywords" content="字符串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IPC机制">
-<meta property="og:url" content="http://yoursite.com/2019/01/26/IPC机制/index.html">
+<meta property="og:title" content="最长公共前缀">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/最长公共前缀/index.html">
 <meta property="og:site_name" content="若只如初见">
-<meta property="og:description" content="本文内容来自《Android开发艺术探索》 IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
+<meta property="og:description" content="LeetCode 题号：14 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_1.jpg">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_2.jpg">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_3.jpg">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_4.jpg">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_5.jpg">
-<meta property="og:image" content="http://qiniu.androidar.xin/IPC_6.jpg">
-<meta property="og:updated_time" content="2019-01-29T02:52:14.376Z">
+<meta property="og:updated_time" content="2019-01-29T07:15:50.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IPC机制">
-<meta name="twitter:description" content="本文内容来自《Android开发艺术探索》 IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。">
-<meta name="twitter:image" content="http://qiniu.androidar.xin/IPC_1.jpg">
+<meta name="twitter:title" content="最长公共前缀">
+<meta name="twitter:description" content="LeetCode 题号：14 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。">
 
 
 
@@ -126,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/26/IPC机制/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/最长公共前缀/">
 
 
 
 
 
-  <title>IPC机制 | 若只如初见</title>
+  <title>最长公共前缀 | 若只如初见</title>
   
 
 
@@ -203,6 +197,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
           </a>
         </li>
       
@@ -291,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/26/IPC机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/最长公共前缀/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MagicFrost">
@@ -308,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IPC机制</h1>
+          <h1 class="post-title" itemprop="name headline">最长公共前缀</h1>
         
 
         <div class="post-meta">
@@ -320,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-26T15:33:56+08:00">
-                2019-01-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-22T10:40:00+08:00">
+                2019-01-22
               </time>
             
 
@@ -336,7 +340,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-29T10:52:14+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-29T15:15:50+08:00">
                 2019-01-29
               </time>
             
@@ -355,8 +359,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -373,8 +377,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/26/IPC机制/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/26/IPC机制/" itemprop="commentCount"></span>
+                <a href="/2019/01/22/最长公共前缀/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/22/最长公共前缀/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -382,7 +386,7 @@
 
           
           
-             <span id="/2019/01/26/IPC机制/" class="leancloud_visitors" data-flag-title="IPC机制">
+             <span id="/2019/01/22/最长公共前缀/" class="leancloud_visitors" data-flag-title="最长公共前缀">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -407,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.2k
+                  282
                 </span>
               
 
@@ -423,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8
+                  1
                 </span>
               
             </div>
@@ -444,92 +448,13 @@
       
 
       
-        <p><em>本文内容来自《Android开发艺术探索》</em></p>
-<p>IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；<br>说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。</p>
+        <p>LeetCode 题号：14</p>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。<br>如果不存在公共前缀，返回空字符串 “”。</p>
 <a id="more"></a>
-<h2 id="Android-开启多进程模式"><a href="#Android-开启多进程模式" class="headerlink" title="Android  开启多进程模式"></a><strong>Android  开启多进程模式</strong></h2><p>在AndroidMenifest中为。四大组件指定 <strong>android:proccess</strong> 属性，这是唯一一种常规开启多进程的方法。如下图所示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//用 : 命名，当前完整进程名要加上包名，表示当前应用的私有进程</span><br><span class="line">&lt;activity </span><br><span class="line">        android:name=&quot;.TestActivityOne&quot;</span><br><span class="line">        android:process=&quot;:test1&quot;/&gt;</span><br><span class="line">//不以 : 为命名的进程属于全局进程，其他应用可以通过ShareUID方式和它跑在同一进程        </span><br><span class="line">&lt;activity </span><br><span class="line">        android:name=&quot;.TestActivityTwo&quot;</span><br><span class="line">        android:process=&quot;com.test.test2&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
-<p>还有一种非常规的方法，就是通过JNI在native层去fork一个新进程</p>
-<p><strong>多进程会造成几个方面的问题：</strong></p>
-<ol>
-<li>静态成员和单例模式完全失效(不在同一内存)</li>
-<li>线程同步机制完成失效(与1类似)</li>
-<li>SharePreferences的可靠性下降(底层是通过读/写XML来实现的)</li>
-<li>Application会多次创建</li>
-</ol>
-<p><strong>Serializable和Parcelable的区别</strong><br>Serializable是Java中的序列化接口,其使用起来简单但是开销很大，序列化和反序列化过程需要大量的I/O操作。而Parcelable是Android中的序列化方式，更适合Android平台，缺点是使用起来麻烦，但是效率很高，主要用在内存序列化上。</p>
-<h2 id="Binder"><a href="#Binder" class="headerlink" title="Binder"></a><strong>Binder</strong></h2><p>直观来说，Binder是Android中的一个类，它实现了IBinder接口。从IPC角度来说，Binder是Android中的一种跨进程通信方式，Binder还可以理解为一种虚拟的物理设备，它的设备驱动是dev/binder,该通信方式在Linux中没有；从AndroidFramework角度来说，Binder是ServiceManager连接各种Manager(ActivityManager、WindowManager,等等）和相应ManagerService的桥梁；从Android应用层来说，Binder是客户端和服务端进行通信的媒介，当bindService的时候，服务端会返回一个包含了服务端业务调用的Binder对象，通过这个Binder对象，客户端就可以获取服务端提供的服务或者数据，这里的服务包括普通服务和基于AIDL的服务。</p>
-<h2 id="Android中的IPC方式"><a href="#Android中的IPC方式" class="headerlink" title="Android中的IPC方式"></a><strong>Android中的IPC方式</strong></h2><ul>
-<li>Bundle</li>
-<li>文件共享</li>
-<li>Messenger</li>
-<li>AIDL</li>
-<li>ContentProvider</li>
-<li>Scoket</li>
-</ul>
-<h2 id="Bundle"><a href="#Bundle" class="headerlink" title="Bundle"></a>Bundle</h2><p>适用于在三大组件(Activity、Service、Receiver)里通过Bundle来传输数据，可以在不同进程中。</p>
-<h2 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h2><p>文件共享适合在对数据同步要求不高的进程中进行通信，并且要妥善处理并发读/写的问题</p>
-<h2 id="Messenger"><a href="#Messenger" class="headerlink" title="Messenger"></a>Messenger</h2><p>底层实现是AIDL。一次只处理一个请求，所以可以不必考虑线程同步的问题(因为服务端不存在并发操作)</p>
-<p>Messenger的工作原理如下：</p>
-<p><img src="http://qiniu.androidar.xin/IPC_1.jpg" alt="图片"></p>
-<h2 id="AIDL"><a href="#AIDL" class="headerlink" title="AIDL"></a><strong>AIDL</strong></h2><p>从系统自动帮我们把aidl文件生成java文件来看，核心实现是生成的内部类Sub和Sub的内部代理类Proxy。<br>当客户端和服务端都位于同一进程时，方法调用不会走快进程的transact过程，而当两者位于不同进程时，方法调用需要走transact过程，这个逻辑由Sub的内部代理类Proxy来完成。</p>
-<p><img src="http://qiniu.androidar.xin/IPC_2.jpg" alt="图片"><br>注意点:<br>1.首先，当客户端发起远程诮求时，由于当前线程会被挂起直至服务端进程返回数据，所以如果一个远程方法是很耗时的，那么不能在UI线程中发起此远程请求；其次，由于服务端的Binder方法运行在Binder的线程池中，所以Binder方法不管是否耗时都应该采用同步的方式去实现，因为它已经运行在一个线程中了<br>2.如果AIDL文件中用到了自定义的Parcelable对象，那么必须新建一个和它同名的AIDL文件，并在其中声明为Parcelable类型，如下所示：<br><strong>java文件：</strong><br><img src="http://qiniu.androidar.xin/IPC_3.jpg" alt="图片"><br><strong>AIDL文件：</strong><br><img src="http://qiniu.androidar.xin/IPC_4.jpg" alt="图片"><br>3.AIDL中除了基本数据类型，其他类型的参数必须标上方向：in、out或者inout，in表示输入型参数，out表示输出型参数</p>
-<p>4.对象是不能跨进程直接传输，对象的跨进程传输本质上都是反序列化的过程</p>
-<p>5.防止Binder意外死亡，有两种处理方法。一种是给Binder设置DeathRecipient监听，当Binder死亡时,会在binderDied()方法里收到回调。还有一种就是在onServiceDisconnected 中重新连接远程服务。区别在于onServiceDisconnected 在客户端的UI线程中被回调，而binderDied在客户端的Binder线程池中被回调。也就是，在binderDied中不能访问UI。</p>
-<p>6.权限认证。可以在Service中的onBind里进行验证(比如加permission验证)，也可以在具体AIDL的java类中的onTransact中进行权限认证；还可以采用Uid和Pid来做验证</p>
-<h2 id="ContentProvider"><a href="#ContentProvider" class="headerlink" title="ContentProvider"></a>ContentProvider</h2><p>为存储和获取数据提供统一的接口。可以在不同的应用程序之间共享数据。可支持在多个应用中存储和读取数据。底层实现也是Binder。<br>操作流程图：</p>
-<p><img src="http://qiniu.androidar.xin/IPC_5.jpg" alt="图片"><br>注意点：<br>1.query、update、insert、delete四个方法是存在多线程并发访问的，因此调用方法内部要做好线程同步</p>
-<h2 id="Scocket"><a href="#Scocket" class="headerlink" title="Scocket"></a>Scocket</h2><p>Socket也称为“套接字“，是网络通信中的概念，它分为流式套接字和用户数据报套接字两种，分别对应于网络的传输控制层中的TCP和UDP协议。TCP协议是面向连接的协议，提供稳定的双向通信功能，TCP连接的建立需要经过“三次握手”才能完成，为了提供稳定的数据传输功能，其本身提供了超时重传机制，因此具有很高的稳定性：而UDP是无连接的，提供不稳定的单向通信功能，当然UDP也可以实现双向通信功能，在性能上，UDP具有更好的效率，其缺点是不保证数据一定能够正确传输，尤其是在网络拥塞的情况下。</p>
-<p>注意点：<br>1.需要在AndroidManifest.xml中声明权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">&lt;uses-permission      </span><br><span class="line">     android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Binder连接池"><a href="#Binder连接池" class="headerlink" title="Binder连接池"></a>Binder连接池</h2><p>随着项目越来越大，业务模块不断增多，不同模块需要对应AIDL接口，之前的是一个业务对应一个Service。但是业务模块庞大，不适合这种单一对应，会造成系统资源不断消耗，所以要采用新的工作机制。<br>整个工作机制是这样的：每个业务模块创建自己的AIDL接口并实现此接口，这个时候不同业务模块之间是不能有耦合的，所有实现细节我们要单独开来，然后向服务端提供自己的唯一标识和其对应的Binder对象；对于服务端来说，只要一个Service就可以了，服务端提供一个queryBinder接口，这个接口能够根据业务模块的特征来返回相应的Binder对象给它们，不间的业务模块拿到所需的Binder对象后就可以进行远程方法调用了。由此可见，Binder连接池的主要作用就是将每个业务模块的Binder请求统一转发到远程Service中去执行，从而避免了重复创建Service的过程。</p>
-<p><img src="http://qiniu.androidar.xin/IPC_6.jpg" alt="图片"></p>
-<h2 id="选用合适的IPC方式"><a href="#选用合适的IPC方式" class="headerlink" title="选用合适的IPC方式"></a>选用合适的IPC方式</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">优点</th>
-<th style="text-align:center">缺点</th>
-<th style="text-align:center">适用场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Bundle</td>
-<td style="text-align:center">简单易用</td>
-<td style="text-align:center">只能传输Bundle支持的数据类型</td>
-<td style="text-align:center">四大组件间的进程通信</td>
-</tr>
-<tr>
-<td style="text-align:center">文件共享</td>
-<td style="text-align:center">简单易用</td>
-<td style="text-align:center">不适合高并发的情况，并且无法做到进程间的即时通讯</td>
-<td style="text-align:center">无并发访问情况下，交换简单的数据实时性不高的情况</td>
-</tr>
-<tr>
-<td style="text-align:center">AIDL</td>
-<td style="text-align:center">功能强大,支持一对多并发通信，支持实时通讯</td>
-<td style="text-align:center">需要处理好线程同步</td>
-<td style="text-align:center">一对多通信且有Rpc需求</td>
-</tr>
-<tr>
-<td style="text-align:center">Messenger</td>
-<td style="text-align:center">功能一般，支持一对多串行通信，支持实时通讯</td>
-<td style="text-align:center">不能很好处理高并发情况，不支持Rpc，数据通过Message进行传输，因此只能传输Bundle支持的数据类型</td>
-<td style="text-align:center">低并发的一对多即时通信,无Rpc需求，或者无需返回结果的Rpc需求</td>
-</tr>
-<tr>
-<td style="text-align:center">ContentProvider</td>
-<td style="text-align:center">在数据源访问方面功能强大,支持一对多并发数据共享，可通过Call方法扩展其他操作(call在源码编译下可调用</td>
-<td style="text-align:center">主要提供数据源的Crud</td>
-<td style="text-align:center">一对多的进程间数据共享</td>
-</tr>
-<tr>
-<td style="text-align:center">Socket</td>
-<td style="text-align:center">功能强大,可以通过网络传输字节流，支持一对多并发实时通讯</td>
-<td style="text-align:center">实现细节有点繁琐，不支持直接的Rpc(调用远程服务的方法)</td>
-<td style="text-align:center">网络数据交换</td>
-</tr>
-</tbody>
-</table>
+<p>示例1：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">输出: &quot;fl&quot;</span><br></pre></td></tr></table></figure></p>
+<p>示例2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">输出: &quot;&quot;</span><br><span class="line">解释: 输入不存在公共前缀。</span><br></pre></td></tr></table></figure></p>
+<p>最优的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">    if(strs.length==0) return &quot;&quot;;</span><br><span class="line">    String repeat=strs[0];</span><br><span class="line">    for(int i = 1;i &lt; strs.length;i ++) &#123;</span><br><span class="line">        //不是从第一位开始相等的,就将最后一位去掉</span><br><span class="line">        while(strs[i].indexOf(repeat) != 0) &#123;</span><br><span class="line">            repeat = repeat.substring(0,repeat.length()-1);</span><br><span class="line">            if(repeat.length()==0) return &quot;&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public static String longestCommonPrefix(String[] strs) &#123;</span><br><span class="line">    if (strs.length == 0) return &quot;&quot;;</span><br><span class="line">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    for (int i = 0;i &lt; strs.length;i ++)&#123;</span><br><span class="line">        list.add(strs[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    Collections.sort(list, new Comparator&lt;String&gt;() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public int compare(String o1, String o2) &#123;</span><br><span class="line">            return o1.length() - o2.length();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    String shortStr = list.get(0);</span><br><span class="line">    list.remove(shortStr);</span><br><span class="line"></span><br><span class="line">    String str = &quot;&quot;;</span><br><span class="line">    for (int i = 0;i &lt; shortStr.length();i ++)&#123;</span><br><span class="line">        for (String string:list)&#123;</span><br><span class="line">            if (shortStr.charAt(i) != string.charAt(i))&#123;</span><br><span class="line">                return str;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        str += shortStr.charAt(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -545,6 +470,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+        </div>
+      
 
       
       
@@ -554,14 +485,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/21/报数/" rel="next" title="报数">
+                <i class="fa fa-chevron-left"></i> 报数
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/28/旋转图像/" rel="prev" title="旋转图像">
-                旋转图像 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/23/删除链表中的节点/" rel="prev" title="删除链表中的节点">
+                删除链表中的节点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,17 +552,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -644,7 +570,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -655,12 +581,21 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -690,22 +625,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-开启多进程模式"><span class="nav-number">1.</span> <span class="nav-text">Android  开启多进程模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder"><span class="nav-number">2.</span> <span class="nav-text">Binder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中的IPC方式"><span class="nav-number">3.</span> <span class="nav-text">Android中的IPC方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bundle"><span class="nav-number">4.</span> <span class="nav-text">Bundle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件共享"><span class="nav-number">5.</span> <span class="nav-text">文件共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Messenger"><span class="nav-number">6.</span> <span class="nav-text">Messenger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AIDL"><span class="nav-number">7.</span> <span class="nav-text">AIDL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider"><span class="nav-number">8.</span> <span class="nav-text">ContentProvider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scocket"><span class="nav-number">9.</span> <span class="nav-text">Scocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Binder连接池"><span class="nav-number">10.</span> <span class="nav-text">Binder连接池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选用合适的IPC方式"><span class="nav-number">11.</span> <span class="nav-text">选用合适的IPC方式</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

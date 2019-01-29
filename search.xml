@@ -1,19 +1,371 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[旋转图像]]></title>
-    <url>%2F2019%2F01%2F28%2F%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F%2F</url>
-    <content type="text"><![CDATA[LeetCode 题号：48 给定一个 n × n 的二维矩阵表示一个图像。将图像顺时针旋转 90 度。 说明：你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。 示例1：12345678910111213给定 matrix = [ [1,2,3], [4,5,6], [7,8,9]],原地旋转输入矩阵，使其变为:[ [7,4,1], [8,5,2], [9,6,3]] 示例2：123456789101112131415给定 matrix =[ [ 5, 1, 9,11], [ 2, 4, 8,10], [13, 3, 6, 7], [15,14,12,16]], 原地旋转输入矩阵，使其变为:[ [15,13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7,10,11]] 我的解答12345678910111213141516171819public static void rotate(int[][] matrix) &#123; Map&lt;Integer,Map&lt;Integer,Integer&gt;&gt; map = new HashMap&lt;&gt;(); for(int i = 0;i &lt; matrix.length;i ++)&#123; for (int j = 0;j &lt; matrix[i].length;j ++)&#123; if (map.get(i) == null)&#123; Map&lt;Integer,Integer&gt; newMap = new HashMap&lt;&gt;(); newMap.put(j,matrix[i][j]); map.put(i,newMap); &#125;else &#123; map.get(i).put(j,matrix[i][j]); &#125; &#125; &#125; for(int i = 0;i &lt; matrix.length;i ++)&#123; for (int j = 0;j &lt; matrix[i].length;j ++)&#123; matrix[j][matrix.length - 1 - i] = map.get(i).get(j); &#125; &#125;&#125; 其他解答：12345678910111213public static void rotate(int[][] matrix) &#123; for(int i = 0;i &lt; matrix.length / 2;i ++)&#123; int start = i; int end = matrix.length - 1 - i; for (int j = 0;j &lt; end - start;j ++)&#123; int temp = matrix[start][start + j]; matrix[start][start + j] = matrix[end - j][start]; matrix[end - j][start] = matrix[end][end - j]; matrix[end][end - j] = matrix[start + j][end]; matrix[start + j][end] = temp; &#125; &#125;&#125;]]></content>
+    <title><![CDATA[Flutter]]></title>
+    <url>%2F2019%2F01%2F29%2FFlutter%2F</url>
+    <content type="text"><![CDATA[Flutter框架结构 Flutter Framework这是一个纯 Dart实现的 SDK，它实现了一套基础库，自底向上，我们来简单介绍一下： 底下两层（Foundation和Animation、Painting、Gestures）在Google的一些视频中被合并为一个dart UI层，对应的是Flutter中的dart:ui包，它是Flutter引擎暴露的底层UI库，提供动画、手势及绘制能力。 Rendering层，这一层是一个抽象的布局层，它依赖于dart UI层，Rendering层会构建一个UI树，当UI树有变化时，会计算出有变化的部分，然后更新UI树，最终将UI树绘制到屏幕上，这个过程类似于React中的虚拟DOM。Rendering层可以说是Flutter UI框架最核心的部分，它除了确定每个UI元素的位置、大小之外还要进行坐标变换、绘制(调用底层dart:ui)。 Widgets层是Flutter提供的的一套基础组件库，在基础组件库之上，Flutter还提供了 Material 和Cupertino两种视觉风格的组件库。而我们Flutter开发的大多数场景，只是和这两层打交道。Flutter Engine这是一个纯 C++实现的 SDK，其中包括了 Skia引擎、Dart运行时、文字排版引擎等。在代码调用 dart:ui库时，调用最终会走到Engine层，然后实现真正的绘制逻辑。]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[环形链表]]></title>
+    <url>%2F2019%2F01%2F29%2F%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：141 给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 示例1：123输入：head = [3,2,0,-4], pos = 1输出：true解释：链表中有一个环，其尾部连接到第二个节点。 示例2：123输入：head = [1,2], pos = 0输出：true解释：链表中有一个环，其尾部连接到第一个节点。 示例3：123输入：head = [1], pos = -1输出：false解释：链表中没有环。 进阶：你能用 O(1)（即，常量）内存解决此问题吗 我的解答：12345678910111213public static boolean hasCycle(ListNode head) &#123; if (head == null || head.next == null) return false; ListNode slow = head; ListNode fast = head.next; while (slow != fast) &#123; if (fast == null || fast.next == null) &#123; return false; &#125; slow = slow.next; fast = fast.next.next; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[回文链表]]></title>
+    <url>%2F2019%2F01%2F28%2F%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：234 请判断一个链表是否为回文链表。 示例21：12输入: 1-&gt;2输出: false 示例2：12输入: 1-&gt;2-&gt;2-&gt;1输出: true 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ 最优的解答：12345678910111213141516171819202122232425262728293031public static boolean isPalindrome(ListNode head) &#123; if (head == null || head.next == null) &#123; return true; &#125; if (head.next.next == null) &#123; return head.val == head.next.val; &#125; ListNode fast = head.next; ListNode slow = head; while (fast.next != null) &#123; // 不停的从slow的后一个开始遍历，知道找到值相同的节点 // 一次完成后，再移动到原节点的下一个节点开始，继续重复上面的步骤 if (fast.next.val == slow.val) &#123; if (fast.next.next != null) &#123; return false; &#125; fast.next = null; slow = slow.next; fast = slow.next; if (fast == null || fast.val == slow.val) &#123; return true; &#125; &#125; else &#123; fast = fast.next; &#125; &#125; return false;&#125; 我的解答：123456789101112131415public static boolean isPalindrome(ListNode head) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (head != null)&#123; list.add(head.val); head = head.next; &#125; for (int i = 0;i &lt; list.size() / 2;i ++)&#123; int num1 = list.get(i); int num2 = list.get(list.size() - 1 - i); if (num1 != num2)&#123; return false; &#125; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[合并两个有序链表]]></title>
+    <url>%2F2019%2F01%2F26%2F%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：21 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 示例：12输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4 最优解答：1234567891011121314151617181920212223public static ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; // 类似归并排序中的合并过程 ListNode dummyHead = new ListNode(0); ListNode cur = dummyHead; while (l1 != null &amp;&amp; l2 != null) &#123; if (l1.val &lt; l2.val) &#123; cur.next = l1; cur = cur.next; l1 = l1.next; &#125; else &#123; cur.next = l2; cur = cur.next; l2 = l2.next; &#125; &#125; // 任一为空，直接连接另一条链表 if (l1 == null) &#123; cur.next = l2; &#125; else &#123; cur.next = l1; &#125; return dummyHead.next;&#125; 我的解答：12345678910111213141516171819202122232425262728293031323334public static ListNode mergeTwoLists(ListNode l1, ListNode l2) &#123; if (l1 == null) return l2; if (l2 == null) return l1; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); list.add(l1.val); while (l1.next != null)&#123; list.add(l1.next.val); l1 = l1.next; &#125; list.add(l2.val); while (l2.next != null)&#123; list.add(l2.next.val); l2 = l2.next; &#125; Collections.sort(list, new Comparator&lt;Integer&gt;() &#123; @Override public int compare(Integer o1, Integer o2) &#123; return o1 - o2; &#125; &#125;); ListNode newNode = null; ListNode temp = null; for (int i = 0; i &lt; list.size(); i ++) &#123; if (newNode == null) &#123; newNode = new ListNode(list.get(i)); temp = newNode; &#125; else &#123; temp.next = new ListNode(list.get(i)); temp = temp.next; &#125; &#125; return newNode;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[反转链表]]></title>
+    <url>%2F2019%2F01%2F25%2F%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：206 反转一个单链表。 示例：12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 进阶:你可以迭代或递归地反转链表。你能否用两种方法解决这道题？ 最优的解答：12345678910111213public static ListNode reverseList(ListNode head) &#123; if(head == null || head.next == null) &#123; return head; &#125; ListNode pre = null, now = head; while (now != null) &#123; ListNode next = now.next; now.next = pre; pre = now; now = next; &#125; return pre;&#125; 我的解答：123456789101112131415161718192021public static ListNode reverseList(ListNode head) &#123; if (head == null || head.next == null) return head; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); list.add(head.val); while (head.next != null)&#123; list.add(head.next.val); head = head.next; &#125; ListNode newNode = null; ListNode temp = null; for (int i = list.size() - 1;i&gt;=0;i--)&#123; if (newNode == null)&#123; newNode = new ListNode(list.get(i)); temp = newNode; &#125;else &#123; temp.next = new ListNode(list.get(i)); temp = temp.next; &#125; &#125; return newNode;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[十大经典排序算法]]></title>
+    <url>%2F2019%2F01%2F24%2F%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[排序算法是《数据结构与算法》中最基本的算法之一。排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。用一张图概括： 关于时间复杂度： 平方阶 (O(n2)) 排序 各类简单排序：直接插入、直接选择和冒泡排序。 线性对数阶 (O(nlog2n)) 排序 快速排序、堆排序和归并排序； O(n1+§)) 排序，§ 是介于 0 和 1 之间的常数。 希尔排序 线性阶 (O(n)) 排序 基数排序，此外还有桶、箱排序。 关于稳定性：稳定的排序算法：冒泡排序、插入排序、归并排序和基数排序。不是稳定的排序算法：选择排序、快速排序、希尔排序、堆排序。名词解释：n：数据规模k：“桶”的个数In-place：占用常数内存，不占用额外内存Out-place：占用额外内存稳定性：排序后 2 个相等键值的顺序和排序之前它们的顺序相同 详情转载https://github.com/hustcc/JS-Sorting-Algorithm]]></content>
       <categories>
         <category>算法</category>
       </categories>
   </entry>
   <entry>
+    <title><![CDATA[删除链表的倒数第N个节点]]></title>
+    <url>%2F2019%2F01%2F24%2F%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：19 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 示例：123给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5. 说明：给定的 n 保证是有效的。 我的解答：123456789101112131415161718192021222324252627282930313233public static ListNode removeNthFromEnd(ListNode head, int n) &#123; if (n == 0) return head; int index = 1; ListNode temp = head; while (temp.next != null)&#123; index ++; temp = temp.next; &#125; if (index == 1 &amp;&amp; n == 1) return null; int i = 0; temp = head; while (temp.next != null)&#123; if (n == 1 &amp;&amp; i == index - n - 1)&#123; temp.next = null; return head; &#125; if (index == n)&#123; head.val = head.next.val; head.next = head.next.next; return head; &#125; if (i == index - n)&#123; temp.val = temp.next.val; temp.next = temp.next.next; return head; &#125; i++; temp = temp.next; &#125; return head;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[删除链表中的节点]]></title>
+    <url>%2F2019%2F01%2F23%2F%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：237 请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。现有一个链表 – head = [4,5,1,9]，它可以表示为: 示例1：123输入: head = [4,5,1,9], node = 5输出: [4,1,9]解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9. 示例2：123输入: head = [4,5,1,9], node = 1输出: [4,5,9]解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9. 说明: 链表至少包含两个节点。 链表中所有节点的值都是唯一的。 给定的节点为非末尾节点并且一定是链表中的一个有效节点。 不要从你的函数中返回任何结果。 题解： 给我们的这个node就是链表的一部分，直接在上面操作就可以了，不要纠结为什么没有head 我的解答：1234public void deleteNode(ListNode node) &#123; node.val = node.next.val; node.next = node.next.next;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[最长公共前缀]]></title>
+    <url>%2F2019%2F01%2F22%2F%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：14 编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。 示例1：12输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]输出: &quot;fl&quot; 示例2：123输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]输出: &quot;&quot;解释: 输入不存在公共前缀。 最优的解答：123456789101112public String longestCommonPrefix(String[] strs) &#123; if(strs.length==0) return &quot;&quot;; String repeat=strs[0]; for(int i = 1;i &lt; strs.length;i ++) &#123; //不是从第一位开始相等的,就将最后一位去掉 while(strs[i].indexOf(repeat) != 0) &#123; repeat = repeat.substring(0,repeat.length()-1); if(repeat.length()==0) return &quot;&quot;; &#125; &#125; return repeat;&#125; 我的解答：123456789101112131415161718192021222324252627public static String longestCommonPrefix(String[] strs) &#123; if (strs.length == 0) return &quot;&quot;; List&lt;String&gt; list = new ArrayList&lt;&gt;(); for (int i = 0;i &lt; strs.length;i ++)&#123; list.add(strs[i]); &#125; Collections.sort(list, new Comparator&lt;String&gt;() &#123; @Override public int compare(String o1, String o2) &#123; return o1.length() - o2.length(); &#125; &#125;); String shortStr = list.get(0); list.remove(shortStr); String str = &quot;&quot;; for (int i = 0;i &lt; shortStr.length();i ++)&#123; for (String string:list)&#123; if (shortStr.charAt(i) != string.charAt(i))&#123; return str; &#125; &#125; str += shortStr.charAt(i); &#125; return str;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[报数]]></title>
+    <url>%2F2019%2F01%2F21%2F%E6%8A%A5%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：38 报数序列是一个整数序列，按照其中的整数的顺序进行报数，得到下一个数。其前五项如下：123451. 12. 113. 214. 12115. 111221 1 被读作 “one 1” (“一个一”) , 即 11。11 被读作 “two 1s” (“两个一”）, 即 21。21 被读作 “one 2”, “one 1” （”一个二” , “一个一”) , 即 1211。 给定一个正整数 n（1 ≤ n ≤ 30），输出报数序列的第 n 项。注意：整数顺序将表示为一个字符串。 示例1：12输入: 1输出: &quot;1&quot; 示例2：12输入: 4输出: &quot;1211&quot; 我的解答：123456789101112131415161718192021222324252627public static String countAndSay(int n) &#123; if (n == 1) return &quot;1&quot;; if (n == 2) return &quot;11&quot;; String str = &quot;11&quot;; StringBuilder builder = new StringBuilder(); for (int i = 2;i &lt; n;i ++)&#123; char c = str.charAt(0); int index = 1; for (int j = 1;j &lt; str.length();j ++)&#123; if (str.charAt(j) == c)&#123; index ++; &#125;else &#123; builder.append(index); builder.append(c); c = str.charAt(j); index = 1; &#125; if (j == str.length() - 1)&#123; builder.append(index); builder.append(c); &#125; &#125; str = builder.toString(); builder.setLength(0); &#125; return str;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[实现strStr()]]></title>
+    <url>%2F2019%2F01%2F19%2F%E5%AE%9E%E7%8E%B0strStr()%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：28 实现 strStr() 函数。给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回 -1。 示例1：12输入: haystack = &quot;hello&quot;, needle = &quot;ll&quot;输出: 2 示例2：12输入: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;输出: -1 说明:当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr()以及 Java的 indexOf()定义相符。 java indexOf()的代码:12345678910111213141516171819202122232425public static int strStr(String haystack, String needle) &#123; if (needle.length() == 0) return 0; final int sourceLength = haystack.length(); final int targetLength = needle.length(); char first = needle.charAt(0); int max = (sourceLength - targetLength); for (int i = 0; i &lt;= max; i++) &#123; if (haystack.charAt(i)!= first) &#123; while (++i &lt;= max &amp;&amp; haystack.charAt(i) != first); &#125; if (i &lt;= max) &#123; int j = i + 1; int end = j + targetLength - 1; for (int k = 1; j &lt; end &amp;&amp; haystack.charAt(j) == needle.charAt(k); j++, k++); if (j == end) &#123; return i; &#125; &#125; &#125; return -1;&#125; 我的解答：1234567891011121314151617181920public static int strStr(String haystack, String needle) &#123; if (needle.length() == 0) return 0; if (needle.length() &gt; haystack.length()) return -1; for (int i = 0;i &lt; haystack.length();i ++)&#123; if (haystack.charAt(i) == needle.charAt(0))&#123; int j = i + 1; int end = j + needle.length() - 1; for (int k = 1;k &lt; needle.length() &amp;&amp; j &lt; haystack.length();j++,k ++)&#123; if (haystack.charAt(j) != needle.charAt(k))&#123; break; &#125; &#125; if (j == end) return i; &#125; &#125; return -1;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[字符串转换整数 (atoi)]]></title>
+    <url>%2F2019%2F01%2F18%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%20(atoi)%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：8 请你来实现一个 atoi 函数，使其能将字符串转换成整数。首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。在任何情况下，若函数不能进行有效的转换时，请返回 0。 说明：假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231, 231 − 1]。如果数值超过这个范围，qing返回 INT_MAX (231 − 1) 或 INT_MIN (−231) 。 示例1：12输入: &quot;42&quot;输出: 42 示例2：1234输入: &quot; -42&quot;输出: -42解释: 第一个非空白字符为 &apos;-&apos;, 它是一个负号。 我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。 示例3：123输入: &quot;4193 with words&quot;输出: 4193解释: 转换截止于数字 &apos;3&apos; ，因为它的下一个字符不为数字。 示例4：1234输入: &quot;words and 987&quot;输出: 0解释: 第一个非空字符是 &apos;w&apos;, 但它不是数字或正、负号。 因此无法执行有效的转换。 示例5：1234输入: &quot;-91283472332&quot;输出: -2147483648解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。 因此返回 INT_MIN (−231) 。 我的解答：12345678910111213141516171819202122232425262728293031323334353637public static int myAtoi(String str) &#123; str = str.trim(); if (str.length() == 0) return 0; if (str.equals(&quot;+&quot;) || str.equals(&quot;-&quot;))return 0; String string = &quot;&quot;+str.charAt(0); if ((!(string.equals(&quot;+&quot;) || string.equals(&quot;-&quot;) || isNumber(str.charAt(0)))))&#123; return 0; &#125; StringBuilder builder = new StringBuilder(); builder.append(string); for (int i = 1;i &lt; str.length();i ++)&#123; char c = str.charAt(i); if (isNumber(c))&#123; builder.append(c); &#125;else &#123; break; &#125; &#125; if (builder.toString().equals(&quot;+&quot;) || builder.toString().equals( &quot;-&quot;)) return 0; Double num = Double.parseDouble(builder.toString()); if (num&gt;Integer.MAX_VALUE) return Integer.MAX_VALUE; if (num&lt;Integer.MIN_VALUE) return Integer.MIN_VALUE; return num.intValue();&#125;private static boolean isNumber(char c) &#123; String number = &quot;0123456789&quot;; if (number.indexOf(c) == -1)&#123; return false; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[验证回文串]]></title>
+    <url>%2F2019%2F01%2F17%2F%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：125 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。 说明：本题中，我们将空字符串定义为有效的回文串。 示例1：12输入: &quot;A man, a plan, a canal: Panama&quot;输出: true 示例2：12输入: &quot;race a car&quot;输出: false 我的解答：123456789101112public static boolean isPalindrome(String s) &#123; //可以替换大部分空白字符， 不限于空格 . 说明:\s 可以匹配空格、制表符、换页符等 空白字符的其中任意一个 s = s.trim().replaceAll(&quot;\\s*&quot;,&quot;&quot;); //清除所有符号,只留下字母 数字 汉字 共3类. s = s.replaceAll(&quot;[\\p&#123;P&#125;\\p&#123;Punct&#125;]&quot;,&quot;&quot;).toLowerCase(); for (int i = 0;i &lt; s.length()/2;i ++)&#123; if (s.charAt(i) != s.charAt(s.length() - 1 - i))&#123; return false; &#125; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[有效的字母异位词]]></title>
+    <url>%2F2019%2F01%2F16%2F%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：242 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的一个字母异位词。 示例1：12输入: s = &quot;anagram&quot;, t = &quot;nagaram&quot;输出: true 示例2：12输入: s = &quot;rat&quot;, t = &quot;car&quot;输出: false 说明:你可以假设字符串只包含小写字母。 进阶:如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？ 我的解答：123456789101112public boolean isAnagram(String s, String t) &#123; if (s.length() != t.length()) return false; char[] chars1 = s.toCharArray(); Arrays.sort(chars1); char[] chars2 = t.toCharArray(); Arrays.sort(chars2); if (!String.valueOf(chars1).equals(String.valueOf(chars2)))&#123; return false; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IPC机制]]></title>
-    <url>%2F2019%2F01%2F26%2FIPC%E6%9C%BA%E5%88%B6%2F</url>
+    <url>%2F2019%2F01%2F16%2FIPC%E6%9C%BA%E5%88%B6%2F</url>
     <content type="text"><![CDATA[本文内容来自《Android开发艺术探索》 IPC是Inter-Process-Communication的缩写，意思是进程间通信或者跨进程通信；说起进程间通信，我们应该首先来了解一下什么是进程。按照操作系统的描述，线程是CPU调度的最小单元，而进程一般指一个执行单元，在移动设备上指一个程序或应用；一个进程可以包含多个线程。 Android 开启多进程模式在AndroidMenifest中为。四大组件指定 android:proccess 属性，这是唯一一种常规开启多进程的方法。如下图所示:12345678//用 : 命名，当前完整进程名要加上包名，表示当前应用的私有进程&lt;activity android:name=&quot;.TestActivityOne&quot; android:process=&quot;:test1&quot;/&gt;//不以 : 为命名的进程属于全局进程，其他应用可以通过ShareUID方式和它跑在同一进程 &lt;activity android:name=&quot;.TestActivityTwo&quot; android:process=&quot;com.test.test2&quot;/&gt; 还有一种非常规的方法，就是通过JNI在native层去fork一个新进程 多进程会造成几个方面的问题： 静态成员和单例模式完全失效(不在同一内存) 线程同步机制完成失效(与1类似) SharePreferences的可靠性下降(底层是通过读/写XML来实现的) Application会多次创建 Serializable和Parcelable的区别Serializable是Java中的序列化接口,其使用起来简单但是开销很大，序列化和反序列化过程需要大量的I/O操作。而Parcelable是Android中的序列化方式，更适合Android平台，缺点是使用起来麻烦，但是效率很高，主要用在内存序列化上。 Binder直观来说，Binder是Android中的一个类，它实现了IBinder接口。从IPC角度来说，Binder是Android中的一种跨进程通信方式，Binder还可以理解为一种虚拟的物理设备，它的设备驱动是dev/binder,该通信方式在Linux中没有；从AndroidFramework角度来说，Binder是ServiceManager连接各种Manager(ActivityManager、WindowManager,等等）和相应ManagerService的桥梁；从Android应用层来说，Binder是客户端和服务端进行通信的媒介，当bindService的时候，服务端会返回一个包含了服务端业务调用的Binder对象，通过这个Binder对象，客户端就可以获取服务端提供的服务或者数据，这里的服务包括普通服务和基于AIDL的服务。 Android中的IPC方式 Bundle 文件共享 Messenger AIDL ContentProvider Scoket Bundle适用于在三大组件(Activity、Service、Receiver)里通过Bundle来传输数据，可以在不同进程中。 文件共享文件共享适合在对数据同步要求不高的进程中进行通信，并且要妥善处理并发读/写的问题 Messenger底层实现是AIDL。一次只处理一个请求，所以可以不必考虑线程同步的问题(因为服务端不存在并发操作) Messenger的工作原理如下： AIDL从系统自动帮我们把aidl文件生成java文件来看，核心实现是生成的内部类Sub和Sub的内部代理类Proxy。当客户端和服务端都位于同一进程时，方法调用不会走快进程的transact过程，而当两者位于不同进程时，方法调用需要走transact过程，这个逻辑由Sub的内部代理类Proxy来完成。 注意点:1.首先，当客户端发起远程诮求时，由于当前线程会被挂起直至服务端进程返回数据，所以如果一个远程方法是很耗时的，那么不能在UI线程中发起此远程请求；其次，由于服务端的Binder方法运行在Binder的线程池中，所以Binder方法不管是否耗时都应该采用同步的方式去实现，因为它已经运行在一个线程中了2.如果AIDL文件中用到了自定义的Parcelable对象，那么必须新建一个和它同名的AIDL文件，并在其中声明为Parcelable类型，如下所示：java文件：AIDL文件：3.AIDL中除了基本数据类型，其他类型的参数必须标上方向：in、out或者inout，in表示输入型参数，out表示输出型参数 4.对象是不能跨进程直接传输，对象的跨进程传输本质上都是反序列化的过程 5.防止Binder意外死亡，有两种处理方法。一种是给Binder设置DeathRecipient监听，当Binder死亡时,会在binderDied()方法里收到回调。还有一种就是在onServiceDisconnected 中重新连接远程服务。区别在于onServiceDisconnected 在客户端的UI线程中被回调，而binderDied在客户端的Binder线程池中被回调。也就是，在binderDied中不能访问UI。 6.权限认证。可以在Service中的onBind里进行验证(比如加permission验证)，也可以在具体AIDL的java类中的onTransact中进行权限认证；还可以采用Uid和Pid来做验证 ContentProvider为存储和获取数据提供统一的接口。可以在不同的应用程序之间共享数据。可支持在多个应用中存储和读取数据。底层实现也是Binder。操作流程图： 注意点：1.query、update、insert、delete四个方法是存在多线程并发访问的，因此调用方法内部要做好线程同步 ScocketSocket也称为“套接字“，是网络通信中的概念，它分为流式套接字和用户数据报套接字两种，分别对应于网络的传输控制层中的TCP和UDP协议。TCP协议是面向连接的协议，提供稳定的双向通信功能，TCP连接的建立需要经过“三次握手”才能完成，为了提供稳定的数据传输功能，其本身提供了超时重传机制，因此具有很高的稳定性：而UDP是无连接的，提供不稳定的单向通信功能，当然UDP也可以实现双向通信功能，在性能上，UDP具有更好的效率，其缺点是不保证数据一定能够正确传输，尤其是在网络拥塞的情况下。 注意点：1.需要在AndroidManifest.xml中声明权限123&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt; Binder连接池随着项目越来越大，业务模块不断增多，不同模块需要对应AIDL接口，之前的是一个业务对应一个Service。但是业务模块庞大，不适合这种单一对应，会造成系统资源不断消耗，所以要采用新的工作机制。整个工作机制是这样的：每个业务模块创建自己的AIDL接口并实现此接口，这个时候不同业务模块之间是不能有耦合的，所有实现细节我们要单独开来，然后向服务端提供自己的唯一标识和其对应的Binder对象；对于服务端来说，只要一个Service就可以了，服务端提供一个queryBinder接口，这个接口能够根据业务模块的特征来返回相应的Binder对象给它们，不间的业务模块拿到所需的Binder对象后就可以进行远程方法调用了。由此可见，Binder连接池的主要作用就是将每个业务模块的Binder请求统一转发到远程Service中去执行，从而避免了重复创建Service的过程。 选用合适的IPC方式 名称 优点 缺点 适用场景 Bundle 简单易用 只能传输Bundle支持的数据类型 四大组件间的进程通信 文件共享 简单易用 不适合高并发的情况，并且无法做到进程间的即时通讯 无并发访问情况下，交换简单的数据实时性不高的情况 AIDL 功能强大,支持一对多并发通信，支持实时通讯 需要处理好线程同步 一对多通信且有Rpc需求 Messenger 功能一般，支持一对多串行通信，支持实时通讯 不能很好处理高并发情况，不支持Rpc，数据通过Message进行传输，因此只能传输Bundle支持的数据类型 低并发的一对多即时通信,无Rpc需求，或者无需返回结果的Rpc需求 ContentProvider 在数据源访问方面功能强大,支持一对多并发数据共享，可通过Call方法扩展其他操作(call在源码编译下可调用 主要提供数据源的Crud 一对多的进程间数据共享 Socket 功能强大,可以通过网络传输字节流，支持一对多并发实时通讯 实现细节有点繁琐，不支持直接的Rpc(调用远程服务的方法) 网络数据交换]]></content>
       <categories>
         <category>Android</category>
       </categories>
+      <tags>
+        <tag>TCP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[字符串中的第一个唯一字符]]></title>
+    <url>%2F2019%2F01%2F15%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%94%AF%E4%B8%80%E5%AD%97%E7%AC%A6%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：387 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。 示例：12345s = &quot;leetcode&quot;返回 0.s = &quot;loveleetcode&quot;,返回 2. 注意事项：您可以假定该字符串只包含小写字母。 我的解答：123456789public int firstUniqChar(String s) &#123; for (int i=0;i&lt;s.length();i++)&#123; int index = s.indexOf(s.charAt(i)); if (s.lastIndexOf(s.charAt(i)) == index)&#123; return i; &#125; &#125; return -1;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[整数反转]]></title>
+    <url>%2F2019%2F01%2F14%2F%E6%95%B4%E6%95%B0%E5%8F%8D%E8%BD%AC%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：7 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。 示例1：12输入: 123输出: 321 示例2：12输入: -123输出: -321 示例3：12输入: 120输出: 21 注意:假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [−231, 231 − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。 最优解答：12345678910public int reverse(int x) &#123; int result = 0; while(x != 0)&#123; if(result &gt; Integer.MAX_VALUE / 10 || result &lt; Integer.MIN_VALUE / 10) return 0; result = result * 10 + x % 10; x /= 10; &#125; return result;&#125; 我的解答：12345678910111213141516171819202122232425public int reverse(int x) &#123; try &#123; if (x &gt;= 0)&#123; x = Integer.parseInt(reverseString(&quot;&quot;+x)); &#125;else &#123; x = 0 - Integer.parseInt(reverseString(&quot;&quot;+Math.abs(x))); &#125; &#125;catch (NumberFormatException e)&#123; return 0; &#125; return x;&#125;public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0;i &lt; chars.length/2;i ++)&#123; char tmp = chars[i]; chars[i] = chars[chars.length - 1 - i]; chars[chars.length - 1 - i] = tmp; &#125; return new String(chars);&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[有效的数独]]></title>
+    <url>%2F2019%2F01%2F12%2F%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：36 判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。 数字 1-9 在每一行只能出现一次。 数字 1-9 在每一列只能出现一次。 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。 上图是一个部分填充的有效的数独。数独部分空格内已填入了数字，空白格用 ‘.’ 表示。 示例1：12345678910111213输入:[ [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;], [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;], [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;], [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;], [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]输出: true 示例2：123456789101112131415输入:[ [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;], [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;], [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;], [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;], [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;], [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]]输出: false解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。 但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。 说明: 一个有效的数独（部分已被填充）不一定是可解的。 只需要根据以上规则，验证已经填入的数字是否有效即可。 给定数独序列只包含数字 1-9 和字符 ‘.’ 。 给定数独永远是 9x9 形式的。 我的解答：123456789101112131415161718192021222324252627282930313233343536public boolean isValidSudoku(char[][] board) &#123; Map&lt;Integer,Map&lt;Character,Character&gt;&gt; rowMap = new HashMap&lt;&gt;(); Map&lt;Integer,Map&lt;Character,Character&gt;&gt; colMap = new HashMap&lt;&gt;(); Map&lt;Integer,Map&lt;Character,Character&gt;&gt; blockMap = new HashMap&lt;&gt;(); for (int i = 0;i &lt; 9;i ++)&#123; for (int j = 0;j &lt; 9;j ++)&#123; if (board[i][j] != &apos;.&apos;)&#123; char num = board[i][j]; if ((rowMap.get(i) != null &amp;&amp; rowMap.get(i).containsKey(num)) || (colMap.get(j) != null &amp;&amp; colMap.get(j).containsKey(num)) || (blockMap.get(i / 3 * 3 + j / 3) != null &amp;&amp; blockMap.get(i / 3 * 3 + j / 3） .containsKey(num)))&#123; return false; &#125;else &#123; addValue(rowMap,i,num); addValue(colMap,j,num); addValue(blockMap,i / 3 * 3 + j / 3,num); &#125; &#125; &#125; &#125; return true;&#125;private void addValue(Map&lt;Integer,Map&lt;Character,Character&gt;&gt; map,int index,char num)&#123; if (map.get(index) == null)&#123; Map&lt;Character,Character&gt; newMap = new HashMap&lt;&gt;(); newMap.put(num,num); map.put(index,newMap); &#125;else &#123; map.get(index).put(num,num); &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Activity的生命周期和启动模式]]></title>
+    <url>%2F2019%2F01%2F11%2FActivity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[本文内容来自《Android开发艺术探索》 Activity的生命周期，如图: onStart(),onResume(),onPause(),onStop()这四个状态都表示可见状态，区分他们区别是:onStart(),onStop()表示可见，但是他们不在前台；onResume(),onPause()表示可见，且位于前台； 注意点：不要在onPause()进行重量级操作,因为当前Activity的onPause()执行完成后,新的Activity才能onResume() Activity异常情况分析 Activity异常销毁并重建，生命周期如图： 异常终止会调用onSaveInstanceState来保存Activity的状态,这个方法的调用时机在onStop之前,它和onPause没有既定的时序关系，它既可能在onPause之前调用，也可能在onPause之后调用。在Activity重建之后，系统会调用onRestoreInstanceState，并且把Activity销毁时onSaveInstanceState保存的Bundle对象作为参数同时传递给onRestoreInstanceState和onCreate，我们可以通过Bundle是否为null，来判断Activity是否被重建，而且我们可以在重建后，取出保存的数据，来恢复Activity。 注意：onRestoreInstanceState一旦被调用，Bundle一定是有值的，onCreate的值要判空 从生命周期调用时序来看，onRestoreInstanceState的调用时间在onStart之后。和Activity一样，每个View也有 onSaveInstanceState 和 onRestoreInstanceState方法。在Activity在意外退出过程，系统会默认保存当前Activity的视图结构。在重建过程，系统会恢复这些保存的数据。 关于保存和恢复 View 层次结构，系统的工作流程是这样的：首先 Activity 被意外终止时， Activity 会调用 onSavelnstanceState 去保存数据， 然后 Activity 会委托 Window 去保存数据， 接着 Window 再委托它上面的顶级容器去保存数据。 顶层容器是一个 ViewGroup, 一般来说它很可能是 DecorView。最后顶层容器再去一一通知它的子元素来保存数据， 这样整个数据保存过程就完成了。可以发现这是一种典型的委托思想，上层委托下层、父层容器委托子元素去处理一件事件。 启动模式(launchMode) standard:默认模式 singleTop:栈顶复用特性，调用onNewIntent singleTask:具有栈内复用，cleanTop的属性 singleInstance:singleTask的特性全都有，而且只能单独位于一个任务栈中 taskAffinity的属性可以为Activity指定任务栈，这个属性值必须不能喝包名相同，采用和包名相同命名规范。主要和singleTask启动模式或者allowTaskReparenting属性配对使用 Activity的FlagsFLAG_ACTIVITY_NEW_TASK：指定为singleTask模式，但是不具备cleanTop，要配合FLAG_ACTIVITY_CLEAR_TOP使用 FLAG_ACTIVITY_SINGLE_TOP：指定为singleTop模式 FLAG_ACTIVITY_CLEAR_TOP：配合FLAG_ACTIVITY_NEW_TASK使用 FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS：具有这个标记的Activity不会出现在历史Activity列表中 IntentFilter的匹配规则 action：值是字符串，区分大小写，一个过滤规则可以有多个action category：Intent中如果含有category，不管有多少个，都必须和过滤规则中的其中有定义的category相同。当然，Intent中可以没有category，如果没有category的话，按照上面的描述，这个Intent仍然可以匹配成功。原因是系统在调用startActivity或者startActivityForResult的时候会默认为Intent加上”android.intent.category.DEFAULT”这个category，所以这个category就可以匹配前面的过滤规则中的第三个category。同时，为了我们的activity能够接收隐式调用，就必须在intent-filter中指定”android.intent.category.DEFAULT”这个category。即是说，在Intent中可以没有category，但有的情况下，哪怕是其中一个都不能无中生有 data：data的匹配规则和action类似，如果过滤规则中定义了data，那么Intent中必须也要定义可匹配的data data语法：1234567&lt;data android:scheme=&quot;string&quot; android:host=&quot;string&quot; android:port=&quot;string&quot; android:path=&quot;string&quot; android:pathPattern=&quot;string&quot; android:pathPrefix=&quot;string&quot; android:mimeType=&quot;string&quot;/&gt; data由两部分组成，mimeType和URI。mimeType指媒体类型，比如image/jpeg、audio/mpeg4-generic和video/*等，可以表示图片、文本、视频等不同的媒体格式，而URI中包含的数据就比较多了，下面是URI的结构：1&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/[&lt;path&gt;|&lt;pathPrefix&gt;|&lt;pathPattern&gt;]]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Activity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android系统启动流程]]></title>
+    <url>%2F2019%2F01%2F11%2FAndroid%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[init进程启动过程init进程是Android系统中用户空间的第一个进程，作为第一个进程，它被赋予了很多极其重要的工作职责，比如创建zygote(孵化器)和属性服务等。init进程是由多个源文件共同组成的，这些文件位于源码目录system/core/init。 说到init进程，首先要提到Android系统启动流程的前几步：1.启动电源以及系统启动当电源按下时引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序Bootloader到RAM，然后执行。2.引导程序Bootloader引导程序是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。3.linux内核启动内核启动时，设置缓存、被保护存储器、计划列表，加载驱动。当内核完成系统设置，它首先在系统文件中寻找”init”文件，然后启动root进程或者系统的第一个进程。4.init进程启动 在初始化时，做了大量的准备工作，差不多先初始化好启动一些Service的必要参数，创建好Service对象后，再启动zygote进程 总结起来init进程主要做了三件事：1.创建一些文件夹并挂载设备2.初始化和启动属性服务3.解析init.rc配置文件并启动zygote进程 Zygote在Android系统中，DVM(Dalvik虚拟机)、应用程序进程以及运行系统的关键服务的SystemServer进程都是由Zygote进程来创建的，我们也将它称为孵化器。它通过fock(复制进程)的形式来创建应用程序进程和SystemServer进程，由于Zygote进程在启动时会创建DVM，因此通过fock而创建的应用程序进程和SystemServer进程可以在内部获取一个DVM的实例拷贝。 这个AppRuntime的main函数中，通过JNI调用ZygoteInit的main函数后，Zygote便进入Java架构层，也就是这时候创建了Java架构层 Zygote进程共做了如下几件事：1.创建AppRuntime并调用其start方法，启动Zygote进程。2.创建DVM并为DVM注册JNI.3.通过JNI调用ZygoteInit的main函数进入Zygote的Java框架层。4.通过registerZygoteSocket函数创建服务端Socket，并通过runSelectLoop函数等待ActivityManagerService的请求来创建新的应用程序进程。5.启动SystemServer进程。 SystemServerSyetemServer进程是复制了Zygote的地址空间。通过JNI调用Native层代码，启动Binder线程池，这样SyetemServer进程就可以使用Binder来与其他线程进行通信了。然后启动SystemServiceManager，启动各种其他Service SyetemServer在启动时做了如下工作：1.启动Binder线程池，这样就可以与其他进程进行通信。2.创建SystemServiceManager用于对系统的服务进行创建、启动和生命周期管理。3.启动各种系统服务(如AMS，PMS等)。 LauncherAndroid系统启动的最后一步是启动一个Home应用程序，这个应用程序用来显示系统中已经安装的应用程序，这个Home应用程序就叫做Launcher。应用程序Launcher在启动过程中会请求PackageManagerService返回系统中已经安装的应用程序的信息，并将这些信息封装成一个快捷图标列表显示在系统屏幕上，这样用户可以通过点击这些快捷图标来启动相应的应用程序。 SyetemServer进程在启动的过程中会启动PackageManagerService，PackageManagerService启动后会将系统中的应用程序安装完成。在此前已经启动的ActivityManagerService会将Launcher启动起来。 总体启动流程1.启动电源以及系统启动当电源按下时引导芯片代码开始从预定义的地方（固化在ROM）开始执行。加载引导程序Bootloader到RAM，然后执行。2.引导程序BootLoader引导程序BootLoader是在Android操作系统开始运行前的一个小程序，它的主要作用是把系统OS拉起来并运行。3.Linux内核启动内核启动时，设置缓存、被保护存储器、计划列表、加载驱动。当内核完成系统设置，它首先在系统文件中寻找init.rc文件，并启动init进程。4.init进程启动初始化和启动属性服务，并且启动Zygote进程。5.Zygote进程启动创建JavaVM并为JavaVM注册JNI，创建服务端Socket，启动SystemServer进程。6.SystemServer进程启动启动Binder线程池和SystemServiceManager，并且启动各种系统服务。7.Launcher启动被SystemServer进程启动的ActivityManagerService会启动Launcher，Launcher启动后会将已安装应用的快捷图标显示到界面上。 ##]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Framework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[反转字符串]]></title>
+    <url>%2F2019%2F01%2F11%2F%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：344 编写一个函数，其作用是将输入的字符串反转过来。 示例1：12输入: &quot;hello&quot;输出: &quot;olleh&quot; 示例2：12输入: &quot;A man, a plan, a canal: Panama&quot;输出: &quot;amanaP :lanac a ,nalp a ,nam A&quot; 我的解答：12345678910public String reverseString(String s) &#123; char[] chars = s.toCharArray(); for (int i = 0;i &lt; chars.length/2;i ++)&#123; char tmp = chars[i]; chars[i] = chars[chars.length - 1 - i]; chars[chars.length - 1 - i] = tmp; &#125; return new String(chars);&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[旋转图像]]></title>
+    <url>%2F2019%2F01%2F10%2F%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：48 给定一个 n × n 的二维矩阵表示一个图像。将图像顺时针旋转 90 度。 说明：你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。 示例1：12345678910111213给定 matrix = [ [1,2,3], [4,5,6], [7,8,9]],原地旋转输入矩阵，使其变为:[ [7,4,1], [8,5,2], [9,6,3]] 示例2：123456789101112131415给定 matrix =[ [ 5, 1, 9,11], [ 2, 4, 8,10], [13, 3, 6, 7], [15,14,12,16]], 原地旋转输入矩阵，使其变为:[ [15,13, 2, 5], [14, 3, 4, 1], [12, 6, 8, 9], [16, 7,10,11]] 我的解答12345678910111213141516171819public static void rotate(int[][] matrix) &#123; Map&lt;Integer,Map&lt;Integer,Integer&gt;&gt; map = new HashMap&lt;&gt;(); for(int i = 0;i &lt; matrix.length;i ++)&#123; for (int j = 0;j &lt; matrix[i].length;j ++)&#123; if (map.get(i) == null)&#123; Map&lt;Integer,Integer&gt; newMap = new HashMap&lt;&gt;(); newMap.put(j,matrix[i][j]); map.put(i,newMap); &#125;else &#123; map.get(i).put(j,matrix[i][j]); &#125; &#125; &#125; for(int i = 0;i &lt; matrix.length;i ++)&#123; for (int j = 0;j &lt; matrix[i].length;j ++)&#123; matrix[j][matrix.length - 1 - i] = map.get(i).get(j); &#125; &#125;&#125; 其他解答：12345678910111213public static void rotate(int[][] matrix) &#123; for(int i = 0;i &lt; matrix.length / 2;i ++)&#123; int start = i; int end = matrix.length - 1 - i; for (int j = 0;j &lt; end - start;j ++)&#123; int temp = matrix[start][start + j]; matrix[start][start + j] = matrix[end - j][start]; matrix[end - j][start] = matrix[end][end - j]; matrix[end][end - j] = matrix[start + j][end]; matrix[start + j][end] = temp; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[两数之和]]></title>
+    <url>%2F2019%2F01%2F10%2F%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：1 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例：1234给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 我的解答：12345678910Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();for (int i = 0;i &lt; nums.length;i ++)&#123; int value = target - nums[i]; if (map.containsKey(value))&#123; return new int[]&#123;map.get(value),i&#125;; &#125; map.put(nums[i],i);&#125;return null;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android系统架构]]></title>
+    <url>%2F2019%2F01%2F10%2FAndroid%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%2F</url>
+    <content type="text"><![CDATA[内容参考CSDN刘望舒系统架构 Android系统架构分为五层，从上到下依次是应用层、应用框架层、系统运行库层、硬件抽象层和Linux内核层。 应用层系统内置的应用程序以及非系统级的应用程序都是属于应用层。负责与用户进行直接交互，通常都是用Java进行开发的。 应用框架层(Framework层)应用框架层为开发人员提供了可以开发应用程序所需要的API，我们平常开发应用程序都是调用的这一层所提供的API，当然也包括系统的应用。这一层的是由Java代码编写的，可以称为Java Framework。下面来看这一层所提供的主要的组件。 名称 功能描述 Activity Manager(活动管理器) 管理各个应用程序生命周期以及通常的导航回退功能 Location Manager(位置管理器) 提供地理位置以及定位功能服务 Package Manager(包管理器) 管理所有安装在Android系统中的应用程序 Notification Manager(通知管理器) 使得应用程序可以在状态栏中显示自定义的提示信息 Resource Manager（资源管理器） 提供应用程序使用的各种非代码资源，如本地化字符串、图片、布局文件、颜色文件等 Telephony Manager(电话管理器) 管理所有的移动设备功能 Window Manager（窗口管理器） 管理所有开启的窗口程序 Content Providers（内容提供器） 使得不同应用程序之间可以共享数据 View System（视图系统） 构建应用程序的基本组件 系统运行库层（Native层)系统运行库层分为两部分，分别是C/C++程序库和Android运行时库。下面分别来介绍它们。 1.C/C++程序库C/C++程序库能被Android系统中的不同组件所使用，并通过应用程序框架为开发者提供服务，主要的C/C++程序库如下表所示| 名称 | 功能描述 ||:—-:|:—-:|| OpenGL ES | 3D绘图函数库 || Libc | 从BSD继承来的标准C系统函数库，专门为基于嵌入式Linux的设备定制 || Media Framework | 多媒体库，支持多种常用的音频、视频格式录制和回放。 || SQLite | 轻型的关系型数据库引擎 || SGL | 底层的2D图形渲染引擎 || SSL | 安全套接层，是为网络通信提供安全及数据完整性的一种安全协议 || FreeType | 可移植的字体引擎，它提供统一的接口来访问多种字体格式文件 | 2.Android运行时**库**运行时库又分为核心库和ART(5.0系统之后，Dalvik虚拟机被ART取代)。核心库提供了Java语言核心库的大多数功能，这样开发者可以使用Java语言来编写Android应用。相较于JVM，Dalvik虚拟机是专门为移动设备定制的，允许在有限的内存中同时运行多个虚拟机的实例，并且每一个Dalvik 应用作为一个独立的Linux 进程执行。独立的进程可以防止在虚拟机崩溃的时候所有程序都被关闭。而替代Dalvik虚拟机的ART 的机制与Dalvik 不同。在Dalvik下，应用每次运行的时候，字节码都需要通过即时编译器转换为机器码，这会拖慢应用的运行效率，而在ART 环境中，应用在第一次安装的时候，字节码就会预先编译成机器码，使其成为真正的本地应用。 硬件抽象层（HAL)硬件抽象层是位于操作系统内核与硬件电路之间的接口层，其目的在于将硬件抽象化，为了保护硬件厂商的知识产权，它隐藏了特定平台的硬件接口细节，为操作系统提供虚拟硬件平台，使其具有硬件无关性，可在多种平台上进行移植。 从软硬件测试的角度来看，软硬件的测试工作都可分别基于硬件抽象层来完成，使得软硬件测试工作的并行进行成为可能。通俗来讲，就是将控制硬件的动作放在硬件抽象层中。 Linux层Android 的核心系统服务基于Linux 内核，在此基础上添加了部分Android专用的驱动。系统的安全性、内存管理、进程管理、网络协议栈和驱动模型等都依赖于该内核。Android系统的五层架构就讲到这，了解以上的知识对以后分析系统源码有很大的帮助。 Android系统源码目录整体结构 Android源码根目录 描述 abi 应用程序二进制接口 art 全新的ART运行环境 bionic 系统C库 bootable 启动引导相关代码 build 存放系统编译规则及generic等基础开发包配置 cts Android兼容性测试套件标准 dalvik dalvik虚拟机 developers 开发者目录 development 应用程序开发相关 device 设备相关配置 docs 参考文档目录 external 开源模组相关文件 frameworks 应用程序框架，Android系统核心部分，由Java和C++编写 hardware 主要是硬件抽象层的代码 libcore 核心库相关文件 libnativehelper 动态库，实现JNI库的基础 ndk NDK相关代码，帮助开发人员在应用程序中嵌入C/C++代码 out 编译完成后代码输出在此目录 packages 应用程序包 pdk Plug Development Kit 的缩写，本地开发套件 platform_testing 平台测试 prebuilts x86和arm架构下预编译的一些资源 sdk sdk和模拟器 system 底层文件系统库、应用和组件 toolchain 工具链文件 tools 工具文件 Makefile 全局Makefile文件，用来定义编译规则 从表可以看出，系统源码分类清晰，并且内容庞大且复杂。接下来分析packages中的内容，也就是应用层部分。 应用层部分应用层位于整个Android系统的最上层，开发者开发的应用程序以及系统内置的应用程序都是在应用层。源码根目录中的packages目录对应着系统应用层。它的目录结构如表所示。 /frameworks/base目录 描述 /frameworks/base目录 描述 api 定义API cmds 重要命令：am、app_proce等 core 核心库 data 字体和声音等数据文件 docs 文档 graphics 图形图像相关 include 头文件 keystore 和数据签名证书相关 libs 库 location 地理位置相关库 media 多媒体相关库 native 本地库 nfc-extras NFC相关 obex 蓝牙传输 opengl 2D/3D 图形API packages 设置、TTS、VPN程序 sax XML解析器 services 系统服务 telephony 电话通讯管理 test-runner 测试工具相关 tests 测试相关 tools 工具 wifi wifi无线网络 C/C++程序库部分系统运行库层（Native)中的 C/C++程序库的类型繁多，功能强大，C/C++程序库并不完全在一个目录中，这里给出几个常用且比较重要的C/C++程序库所在的目录位置。| 目录位置 | 描述 ||:—-:|:—-:|| bionic/ | Google开发的系统C库，以BSD许可形式开源。 || /frameworks/av/media | 系统媒体库 || /frameworks/native/opengl | 第三方图形渲染库 || /frameworks/native/services/surfaceflinger | 图形显示库，主要负责图形的渲染、叠加和绘制等功能 || external/sqlite | 轻量型关系数据库SQLite的C++实现 | 讲完 C/C++程序库部分，Android运行时库的代码放在art/目录中。硬件抽象层的代码在hardware/目录中，这一部分是手机厂商改动最大的一部分，根据手机终端所采用的硬件平台会有不同的实现。]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Framework</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[移动零]]></title>
+    <url>%2F2019%2F01%2F09%2F%E7%A7%BB%E5%8A%A8%E9%9B%B6%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：283 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。 示例：12输入: [0,1,0,3,12]输出: [1,3,12,0,0] 说明： 必须在原数组上操作，不能拷贝额外的数组。 尽量减少操作次数。 最优解答：123456789101112public static void moveZeroes(int[] nums) &#123; int j = 0; for(int i = 0; i&lt;nums.length; i++)&#123; if(nums[i]!= 0)&#123; nums[j++] = nums[i]; &#125; &#125; while(j &lt; nums.length)&#123; nums[j] = 0; j++; &#125;&#125; 我的解答：12345678910111213141516171819public static void moveZeroes(int[] nums) &#123; int index = 0; for(int i = 0;i &lt; nums.length;i ++)&#123; if (nums[i] != 0) continue; index++; &#125; if (index == nums.length) return; for(int i = 0;i &lt; nums.length - 1;i ++)&#123; if (nums[i] != 0) continue; for (int j = i;j &lt; nums.length - 1;j ++)&#123; int temp = nums[j]; nums[j] = nums[j + 1]; nums[j + 1] = temp; &#125; if (nums[i] == 0 &amp;&amp; i &lt; (nums.length - index)) &#123; i--; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[加一]]></title>
+    <url>%2F2019%2F01%2F08%2F%E5%8A%A0%E4%B8%80%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：66 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位， 数组中每个元素只存储一个数字。你可以假设除了整数 0 之外，这个整数不会以零开头。 示例 1:123输入: [1,2,3]输出: [1,2,4]解释: 输入数组表示数字 123。 示例2：123输入: [4,3,2,1]输出: [4,3,2,2]解释: 输入数组表示数字 4321。 提示：逢九进一，当数组下标为0时，数组长度扩增一位 我的解答： 1234567891011121314151617181920public static int[] plusOne(int[] digits) &#123; for (int i = digits.length -1;i &gt;= 0;i --)&#123; int number = digits[i] + 1; if (number == 10)&#123; digits[i] = 0; if (i == 0)&#123; int[] newArr = new int[digits.length + 1]; newArr[0] = 1; return newArr; &#125; &#125;else &#123; digits[i] = number; break; &#125; &#125; return digits;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[两个数组的交集 II]]></title>
+    <url>%2F2019%2F01%2F07%2F%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：350 给定两个数组，编写一个函数来计算它们的交集。 示例 1:12输入: nums1 = [1,2,2,1], nums2 = [2,2]输出: [2,2] 示例 2:12输入: nums1 = [4,9,5], nums2 = [9,4,9,8,4]输出: [4,9] 说明： 输出结果中每个元素出现的次数，应与元素在两个数组中出现的次数一致。 我们可以不考虑输出结果的顺序。 进阶: 如果给定的数组已经排好序呢？你将如何优化你的算法？ 如果 nums1 的大小比 nums2 小很多，哪种方法更优？ 如果 nums2 的元素存储在磁盘上，磁盘内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？ 我的解答：12345678910111213141516171819202122232425public static int[] intersect(int[] nums1, int[] nums2) &#123; Arrays.sort(nums1); Arrays.sort(nums2); List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); List&lt;Integer&gt; numList = new ArrayList&lt;&gt;(); for (int num:(nums1.length&gt;=nums2.length?nums1:nums2))&#123; numList.add(num); &#125; for (int num:(nums1.length&lt;nums2.length?nums1:nums2))&#123; if (numList.contains(num))&#123; list.add(num); numList.remove(numList.indexOf(num)); &#125; &#125; int[] nums = new int[list.size()]; for (int i=0;i&lt;list.size();i++)&#123; nums[i] = list.get(i); &#125; return nums;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[只出现一次的数字]]></title>
+    <url>%2F2019%2F01%2F05%2F%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：136给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。 说明： 你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？ 示例1：12输入: [2,2,1]输出: 1 示例2：12输入: [4,1,2,1,2]输出: 4 我的解答:1234567891011public int singleNumber(int[] nums) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int i=0;i&lt;nums.length;i++)&#123; if (map.containsKey(nums[i]))&#123; map.remove(nums[i]); &#125;else &#123; map.put(nums[i],nums[i]); &#125; &#125; return (int) map.keySet().toArray()[0];&#125; 最优方案(运用异或运算)1234567public int singleNumber(int[] nums) &#123; int result = nums[0]; for (int i=1;i&lt;nums.length;i++)&#123; result ^= nums[i]; &#125; return result;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[存在重复元素]]></title>
+    <url>%2F2019%2F01%2F04%2F%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：217 给定一个整数数组，判断是否存在重复元素。如果任何值在数组中出现至少两次，函数返回 true。如果数组中每个元素都不相同，则返回 false。 示例1:12输入: [1,2,3,1]输出: true 示例2:12输入: [1,2,3,4]输出: false 示例3:12输入: [1,1,1,3,3,4,3,2,4,2]输出: true 解决方案:12345678910public boolean containsDuplicate(int[] nums) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int i = 0; i &lt; nums.length; i ++)&#123; if (map.containsKey(nums[i]))&#123; return true; &#125; map.put(nums[i],nums[i]); &#125; return false;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[从排序数组中删除重复项]]></title>
+    <url>%2F2019%2F01%2F03%2F%E4%BB%8E%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9%2F</url>
+    <content type="text"><![CDATA[LeetCode题号:26 给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。 示例 1:12345给定数组 nums = [1,1,2], 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 你不需要考虑数组中超出新长度后面的元素。 示例 2:12345给定 nums = [0,0,1,1,1,2,2,3,3,4],函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。你不需要考虑数组中超出新长度后面的元素。 说明:为什么返回数值是整数，但输出的答案是数组呢?请注意，输入数组是以“引用”方式传递的，这意味着在函数里修改输入数组对于调用者是可见的。你可以想象内部操作如下:12345678// nums 是以“引用”方式传递的。也就是说，不对实参做任何拷贝int len = removeDuplicates(nums);// 在函数里修改输入数组对于调用者是可见的。// 根据你的函数返回的长度, 它会打印出数组中该长度范围内的所有元素。for (int i = 0; i &lt; len; i++) &#123; print(nums[i]);&#125; 输入[1,1,2] 预期输出[1,2]我的答案1234567891011121314class Solution &#123; public int removeDuplicates(int[] nums) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); for (int i =0;i &lt; nums.length;i++)&#123; if (!list.contains(nums[i]))&#123; list.add(nums[i]); &#125; &#125; for (int i = 0;i&lt; list.size();i++)&#123; nums[i] = list.get(i); &#125; return list.size(); &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[旋转数组]]></title>
+    <url>%2F2019%2F01%2F03%2F%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[LeetCode题号:189 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。 示例1:123456输入: [1,2,3,4,5,6,7] 和 k = 3输出: [5,6,7,1,2,3,4]解释:向右旋转 1 步: [7,1,2,3,4,5,6]向右旋转 2 步: [6,7,1,2,3,4,5]向右旋转 3 步: [5,6,7,1,2,3,4] 示例2:12345输入: [-1,-100,3,99] 和 k = 2输出: [3,99,-1,-100]解释: 向右旋转 1 步: [99,-1,-100,3]向右旋转 2 步: [3,99,-1,-100] 解决方案：123456789101112public void rotate(int[] nums, int k) &#123; if (k &lt; 0) k =nums.length - Math.abs(k) % nums.length; if (k &gt; nums.length) k = k % nums.length; int[] numsCopy = nums.clone(); for (int i=0;i&lt;nums.length;i++)&#123; if (i &lt; k)&#123; nums[i] = numsCopy[nums.length - k + i]; &#125;else &#123; nums[i] = numsCopy[i - k]; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[买卖股票的最佳时机 II]]></title>
+    <url>%2F2019%2F01%2F03%2F%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20II%2F</url>
+    <content type="text"><![CDATA[LeetCode题号:122 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。 示例 1:1234输入: [7,1,5,3,6,4]输出: 7解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。 随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。 示例2：12345输入: [1,2,3,4,5]输出: 4解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。 注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。 因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。 示例3：123输入: [7,6,4,3,1]输出: 0解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。 解决方案1：12345678public int maxProfit(int[] prices) &#123; int value = 0; for (int i = 1; i &lt; prices.length; ++i) &#123; int money = prices[i] - prices[i - 1]; value += money &gt; 0 ? money : 0; &#125; return value;&#125; 当明天的价格比今天的价格贵的时候我们今天买，明天卖，这样能够获取最大利润]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[自定义View之小试牛刀]]></title>
+    <url>%2F2016%2F07%2F01%2F%E8%87%AA%E5%AE%9A%E4%B9%89View%E4%B9%8B%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80%2F</url>
+    <content type="text"><![CDATA[自定义View对于Android程序猿来说都应该了解的，或者说一定要掌握。虽然Google提供的控件可以满足日常开发需求，但是总有些奇葩需求肯定是满足不了的，所以对于自定义View的开发，就必不可少了。 关于自定义View的基础学习推荐GcsSloop自定义View系列 首先看下面效果图 实现上图的效果参考这篇文章 再来这个效果图 上面效果图是根据第一个Demo的扩展，具体源码会在文章结尾提供链接 最后一个效果图 这个自定义View是模仿QQ运动的那个界面 下面具体对模仿QQ运动这个View实现步骤1.初始化所需参数//数据初始化 private void init(Context context){ //圆弧所需的矩形 mRect = new RectF(); //其他字的画笔 textGrayPaint = new Paint(); textGrayPaint.setAntiAlias(true); textGrayPaint.setStyle(Paint.Style.FILL); textGrayPaint.setColor(0xFFC6C1C3); textGrayPaint.setTextAlign(Paint.Align.CENTER); //排名的画笔 textSmallPaint = new Paint(); textSmallPaint.setAntiAlias(true); textSmallPaint.setStyle(Paint.Style.FILL); textSmallPaint.setColor(textColor); textSmallPaint.setTextAlign(Paint.Align.CENTER); //总步数的画笔 textBigPaint = new Paint(); textBigPaint.setAntiAlias(true); textBigPaint.setStyle(Paint.Style.FILL); textBigPaint.setColor(textColor); textBigPaint.setTextAlign(Paint.Align.CENTER); //外圆弧的画笔 outSideLinePaint = new Paint(); outSideLinePaint.setAntiAlias(true); outSideLinePaint.setStyle(Paint.Style.STROKE); outSideLinePaint.setColor(outCircleColor); outSideLinePaint.setStrokeCap(Paint.Cap.ROUND); //内圆弧的画笔 inSideLinePaint = new Paint(); inSideLinePaint.setAntiAlias(true); inSideLinePaint.setStyle(Paint.Style.STROKE); inSideLinePaint.setColor(inCircleColor); inSideLinePaint.setStrokeCap(Paint.Cap.ROUND); //竖条画笔 barPaint = new Paint(); barPaint.setAntiAlias(true); barPaint.setStyle(Paint.Style.FILL); barPaint.setColor(outCircleColor); barPaint.setStrokeCap(Paint.Cap.ROUND); //背景画笔 backgroundPaint = new Paint(); barPaint.setAntiAlias(true); barPaint.setStyle(Paint.Style.FILL); //虚线画笔 dashLinePaint = new Paint(); dashLinePaint.setAntiAlias(true); dashLinePaint.setColor(Color.parseColor(&quot;#C1C1C1&quot;)); dashLinePaint.setStyle(Paint.Style.STROKE); dashLinePaint.setPathEffect(new DashPathEffect(new float[]{8, 4}, 0));//画虚线 //头像 headBitmap = BitmapFactory.decodeResource(context.getResources(),R.mipmap.icon_head); } 2.测量View的宽高//测量高度 private int getHeightMeasure(int measureSpec){ int result = getSuggestedMinimumHeight(); int specMode = MeasureSpec.getMode(measureSpec); int specSize = MeasureSpec.getSize(measureSpec); switch (specMode){ case MeasureSpec.UNSPECIFIED: break; case MeasureSpec.EXACTLY: case MeasureSpec.AT_MOST: result = (int) (specSize*0.7); break; } return result; } //测量宽度 private int getWidthMeasure(int measureSpec){ int result = getSuggestedMinimumWidth(); int specMode = MeasureSpec.getMode(measureSpec); int specSize = MeasureSpec.getSize(measureSpec); switch (specMode){ case MeasureSpec.UNSPECIFIED: break; case MeasureSpec.EXACTLY: case MeasureSpec.AT_MOST: result = (int) (specSize*0.9); break; } return result; } //计算所需各个数值大小 @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) { super.onSizeChanged(w, h, oldw, oldh); width = w; height = h; centerX = 0; centerY = -height*heightScale; mRect = new RectF(-width*widthScale,-width*widthScale+centerY,width*widthScale,width*widthScale+centerY); arcStrokeWidth = width/200f*6; textGraySize = width/200f*7; textSmallSize = width/200f*8; textBigSize = textSmallSize*3; } 3.最后就是把界面画出来@Override protected void onDraw(Canvas canvas) { super.onDraw(canvas); //设置各个paint所需的大小 textGrayPaint.setTextSize(textGraySize); textSmallPaint.setTextSize(textSmallSize); textBigPaint.setTextSize(textBigSize); outSideLinePaint.setStrokeWidth(arcStrokeWidth); inSideLinePaint.setStrokeWidth(arcStrokeWidth); barPaint.setStrokeWidth(arcStrokeWidth); paintBelowBackground(canvas);//画下层背景 paintUpBackground(canvas);//画上层背景 paintDashLine(canvas);//画虚线 paintBar(canvas);//画近七天的竖条 paintBottom(canvas); canvas.translate(width/2,height/2); //移动坐标原点到中间 //画圆弧 Path path = new Path(); path.addArc(mRect,120,300); canvas.drawPath(path,inSideLinePaint); path.reset(); path.addArc(mRect,120,300*percent); canvas.drawPath(path,outSideLinePaint); //圆弧间的文字 textGrayPaint.setTextAlign(Paint.Align.CENTER); textGrayPaint.setTextSize(textGraySize); canvas.drawText(&quot;截至&quot;+nowTime+&quot;已走&quot;,0,-textBigSize+centerY,textGrayPaint); canvas.drawText(totalText+&quot;&quot;,0,textSmallSize/2+centerY,textBigPaint); canvas.drawText(&quot;好友平均&quot;+freAvgText+&quot;步&quot;,0,textBigSize+centerY,textGrayPaint); canvas.drawText(&quot;第&quot;,-textSmallSize/2*3+centerX,width*widthScale+centerY,textGrayPaint); canvas.drawText(rankText+&quot;&quot;,0+centerX,width*widthScale+centerY,textSmallPaint); canvas.drawText(&quot;名&quot;,textSmallSize/2*3+centerX,width*widthScale+centerY,textGrayPaint); } 上面只放了部分代码，完整代码地址 PS：模仿QQ运动这个只画出了界面，没有给出点击事件，有兴趣的同学可以自行浏览体验]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>View</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[TCP的连接和释放]]></title>
+    <url>%2F2016%2F06%2F17%2FTCP-IP%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%92%8C%E9%87%8A%E6%94%BE%2F</url>
+    <content type="text"><![CDATA[TCP传输控制协议，是一个面向连接的协议。在运用此协议进行数据传输前都会进行连接的建立工作（三次握手）；当数据传输完毕，连接的双方都会通知对方要释放此连接（四次挥手）。 认识TCP标志位SYN(synchronous建立联机) ACK(acknowledgement 确认) PSH(push传送) FIN(finish结束) RST(reset重置) URG(urgent紧急) 三次握手 第一次握手：客户端发送一个TCP标志位SYN=1，ACK=0的数据包给服务端，并随机会产生一个Sequence number=3233.当服务端接收到这个数据后，服务端由SYN=1可知客户端是想要建立连接； 第二次握手：服务端要对客户端的联机请求进行确认，向客户端发送应答号ACK=1、SYN=1确认号Acknowledge number=3234，此值是客户端的序列号加1，还会产生一个随机的序列号Sequence number=36457，这样就告诉客户端可以进行连接； 第三次握手：客户端收到数据后检查Acknowledge number是否是3233+1的值，以及ACK的值是否为1，若为1，host1会发送ACK=1、确认号码Acknowledge number=36457，告诉服务端,你的请求连接被确认，连接可以建立。 四次挥手 第一次挥手：当传输的数据到达尾部时，客户端向服务端发送FIN=1标志位；可理解成，客户端向服务端说，我这边的数据传送完成了，我准备断开了连接； 第二次挥手：因TCP的连接是全双工的双向连接，关闭也是要从两边关闭；当服务端收到客户端发来的FIN=1的标志位后，服务端不会立刻向客户端发送FIND=1的请求关闭信息，而是先向客户端发送一个ACK=1的应答信息，表示：你请求关闭的请求我已经收到，但我可能还有数据没有完成传送，你再等下，等我数据传输完成了我就告诉你； 第三次挥手：服务端数据传输完成，向客户端发送FIN=1，客户端收到请求关闭连接的请求后，客户端就明白服务端的数据已传输完成，现在可以断开连接了， 第四次挥手：客户端收到FIND=1后，客户端还是怕由于网络不稳定的原因，怕服务端不知道他要断开连接，于是向服务端发送ACK=1确认信息进行确认，把自己设置成TIME_WAIT状态并启动定时器，如果服务端没有收到ACK，服务端TCP的定时器到达后，会要求客户端重新发送ACK，当服务端收到ACK后，服务端就断开连接；当客户端等待2MLS（2倍报文最大生存时间）后，没有收到服务端的重传请求后，他就知道服务端已收到了ACK，所以客户端此时才关闭自己的连接。]]></content>
+      <categories>
+        <category>通信协议</category>
+      </categories>
+      <tags>
+        <tag>TCP</tag>
+      </tags>
   </entry>
 </search>
