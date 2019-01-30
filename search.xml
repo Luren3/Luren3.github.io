@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二叉树的最大深度]]></title>
+    <url>%2F2019%2F01%2F30%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：104 给定一个二叉树，找出其最大深度。二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 说明: 叶子节点是指没有子节点的节点。示例：给定二叉树 [3,9,20,null,null,15,7]，12345 3 / \9 20 / \ 15 7 返回它的最大深度 3 。 我的解答：1234public static int maxDepth(TreeNode root) &#123; if (root == null) return 0; return Math.max(maxDepth(root.left),maxDepth(root.right)) + 1;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[环形链表]]></title>
     <url>%2F2019%2F01%2F29%2F%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：141 给定一个链表，判断链表中是否有环。为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。 示例1：123输入：head = [3,2,0,-4], pos = 1输出：true解释：链表中有一个环，其尾部连接到第二个节点。 示例2：123输入：head = [1,2], pos = 0输出：true解释：链表中有一个环，其尾部连接到第一个节点。 示例3：123输入：head = [1], pos = -1输出：false解释：链表中没有环。 进阶：你能用 O(1)（即，常量）内存解决此问题吗 我的解答：12345678910111213public static boolean hasCycle(ListNode head) &#123; if (head == null || head.next == null) return false; ListNode slow = head; ListNode fast = head.next; while (slow != fast) &#123; if (fast == null || fast.next == null) &#123; return false; &#125; slow = slow.next; fast = fast.next.next; &#125; return true;&#125;]]></content>
