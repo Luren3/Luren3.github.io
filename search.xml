@@ -2,6 +2,17 @@
 <search>
   <entry>
     <title><![CDATA[验证二叉搜索树]]></title>
+    <url>%2F2019%2F02%2F12%2F%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：101 给定一个二叉树，检查它是否是镜像对称的。 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。 12345 1 / \ 2 2 / \ / \3 4 4 3 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的: 12345 1 / \2 2 \ \ 3 3 说明:如果你可以运用递归和迭代两种方法解决这个问题，会很加分。 题解：可以看做镜像，左边等于镜像的右边 递归： 1234567891011121314151617public static boolean isSymmetric(TreeNode root) &#123; if (root == null) return true; return comparison(root.left,root.right);&#125;private static boolean comparison(TreeNode p,TreeNode q)&#123; if (p == null &amp;&amp; q == null)&#123; return true; &#125; if (p == null || q == null)&#123; return false; &#125; if (p.val != q.val)&#123; return false; &#125; return comparison(p.left,q.right) &amp;&amp; comparison(p.right,q.left);&#125; 迭代： 123456789101112131415161718public static boolean isSymmetric(TreeNode root) &#123; if (root == null) return true; Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;(); q.add(root.left); q.add(root.right); while (!q.isEmpty()) &#123; TreeNode t1 = q.poll(); TreeNode t2 = q.poll(); if (t1 == null &amp;&amp; t2 == null) continue; if (t1 == null || t2 == null) return false; if (t1.val != t2.val) return false; q.add(t1.left); q.add(t2.right); q.add(t1.right); q.add(t2.left); &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[验证二叉搜索树]]></title>
     <url>%2F2019%2F01%2F31%2F%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：98 给定一个二叉树，判断其是否是一个有效的二叉搜索树。假设一个二叉搜索树具有如下特征： 节点的左子树只包含小于当前节点的数。 节点的右子树只包含大于当前节点的数。 所有左子树和右子树自身必须也是二叉搜索树。 示例1：12345输入: 2 / \ 1 3输出: true 示例2：123456789输入: 5 / \ 1 4 / \ 3 6输出: false解释: 输入为: [5,1,4,null,null,3,6]。 根节点的值为 5 ，但是其右子节点值为 4 。 题解：左边符合二叉搜索树但是值必须必最顶层根节点的小，右边符合二叉搜索树但是值必须必最顶层根节点的大 最优的解答：12345678910public static boolean isValidBST(TreeNode root) &#123; if (root == null) return true; return isValidBST(root,Long.MIN_VALUE,Long.MAX_VALUE);&#125;private static boolean isValidBST(TreeNode root,long min,long max)&#123; if (root == null) return true; if (root.val &gt;= max) return false; if (root.val &lt;= min) return false; return isValidBST(root.left,min,root.val) &amp;&amp; isValidBST(root.right,root.val,max);&#125; 我的解答：123456789101112131415161718//中序遍历public static boolean isValidBST(TreeNode root) &#123; if (root == null) return true; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); addToList(root, list); for (int i = 1;i &lt; list.size();i ++)&#123; if (list.get(i - 1) &gt;= list.get(i))&#123; return false; &#125; &#125; return true;&#125;private static void addToList(TreeNode root, List&lt;Integer&gt; list) &#123; if (root == null) return; addToList(root.left, list); list.add(root.val); addToList(root.right, list);&#125;]]></content>
       <categories>
