@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[验证二叉搜索树]]></title>
+    <title><![CDATA[二叉树的层次遍历]]></title>
+    <url>%2F2019%2F02%2F13%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：102 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如:给定二叉树: [3,9,20,null,null,15,7], 12345 3 / \9 20 / \ 15 7 返回其层次遍历结果： 12345[ [3], [9,20], [15,7]] 我的解答： 12345678910111213141516171819202122232425public static List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; List&lt;List&lt;Integer&gt;&gt; lists = new ArrayList&lt;&gt;(); Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); while (!queue.isEmpty())&#123; int size = queue.size(); List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); for (int i = 0;i &lt; size;i ++)&#123; TreeNode node = queue.poll(); if (node != null) &#123; list.add(node.val); queue.add(node.left); queue.add(node.right); &#125; &#125; if (list.size() != 0)&#123; lists.add(list); &#125; &#125; return lists;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[对称二叉树]]></title>
     <url>%2F2019%2F02%2F12%2F%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：101 给定一个二叉树，检查它是否是镜像对称的。 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。 12345 1 / \ 2 2 / \ / \3 4 4 3 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的: 12345 1 / \2 2 \ \ 3 3 说明:如果你可以运用递归和迭代两种方法解决这个问题，会很加分。 题解：可以看做镜像，左边等于镜像的右边 递归： 1234567891011121314151617public static boolean isSymmetric(TreeNode root) &#123; if (root == null) return true; return comparison(root.left,root.right);&#125;private static boolean comparison(TreeNode p,TreeNode q)&#123; if (p == null &amp;&amp; q == null)&#123; return true; &#125; if (p == null || q == null)&#123; return false; &#125; if (p.val != q.val)&#123; return false; &#125; return comparison(p.left,q.right) &amp;&amp; comparison(p.right,q.left);&#125; 迭代： 123456789101112131415161718public static boolean isSymmetric(TreeNode root) &#123; if (root == null) return true; Queue&lt;TreeNode&gt; q = new LinkedList&lt;&gt;(); q.add(root.left); q.add(root.right); while (!q.isEmpty()) &#123; TreeNode t1 = q.poll(); TreeNode t2 = q.poll(); if (t1 == null &amp;&amp; t2 == null) continue; if (t1 == null || t2 == null) return false; if (t1.val != t2.val) return false; q.add(t1.left); q.add(t2.right); q.add(t1.right); q.add(t2.left); &#125; return true;&#125;]]></content>
       <categories>
