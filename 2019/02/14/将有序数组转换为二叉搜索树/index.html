@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="链表,">
+  <meta name="keywords" content="树,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="LeetCode 题号：206 反转一个单链表。">
-<meta name="keywords" content="链表">
+<meta name="description" content="LeetCode 题号：108 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。">
+<meta name="keywords" content="树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="反转链表">
-<meta property="og:url" content="http://yoursite.com/2019/01/25/反转链表/index.html">
+<meta property="og:title" content="将有序数组转换为二叉搜索树">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/将有序数组转换为二叉搜索树/index.html">
 <meta property="og:site_name" content="若只如初见">
-<meta property="og:description" content="LeetCode 题号：206 反转一个单链表。">
+<meta property="og:description" content="LeetCode 题号：108 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-29T07:26:38.158Z">
+<meta property="og:updated_time" content="2019-02-14T02:33:43.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="反转链表">
-<meta name="twitter:description" content="LeetCode 题号：206 反转一个单链表。">
+<meta name="twitter:title" content="将有序数组转换为二叉搜索树">
+<meta name="twitter:description" content="LeetCode 题号：108 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/25/反转链表/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/14/将有序数组转换为二叉搜索树/">
 
 
 
 
 
-  <title>反转链表 | 若只如初见</title>
+  <title>将有序数组转换为二叉搜索树 | 若只如初见</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/25/反转链表/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/将有序数组转换为二叉搜索树/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MagicFrost">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">反转链表</h1>
+          <h1 class="post-title" itemprop="name headline">将有序数组转换为二叉搜索树</h1>
         
 
         <div class="post-meta">
@@ -324,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-25T13:49:00+08:00">
-                2019-01-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-14T10:32:00+08:00">
+                2019-02-14
               </time>
             
 
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-29T15:26:38+08:00">
-                2019-01-29
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-14T10:33:43+08:00">
+                2019-02-14
               </time>
             
           </span>
@@ -377,8 +377,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/25/反转链表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/25/反转链表/" itemprop="commentCount"></span>
+                <a href="/2019/02/14/将有序数组转换为二叉搜索树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/14/将有序数组转换为二叉搜索树/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,7 +386,7 @@
 
           
           
-             <span id="/2019/01/25/反转链表/" class="leancloud_visitors" data-flag-title="反转链表">
+             <span id="/2019/02/14/将有序数组转换为二叉搜索树/" class="leancloud_visitors" data-flag-title="将有序数组转换为二叉搜索树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  207
+                  396
                 </span>
               
 
@@ -448,13 +448,14 @@
       
 
       
-        <p>LeetCode 题号：206</p>
-<p>反转一个单链表。</p>
+        <p>LeetCode 题号：108</p>
+<p>将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。<br>本题中，一个高度平衡二叉树是指一个二叉树<em>每个节点 </em>的左右两个子树的高度差的绝对值不超过 1。</p>
 <a id="more"></a>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL</span><br><span class="line">输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</span><br></pre></td></tr></table></figure></p>
-<p><strong>进阶:</strong><br>你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
-<p>最优的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode reverseList(ListNode head) &#123;</span><br><span class="line">    if(head == null || head.next == null) &#123;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode pre = null, now = head;</span><br><span class="line">    while (now != null) &#123;</span><br><span class="line">        ListNode next = now.next;</span><br><span class="line">        now.next = pre;</span><br><span class="line">        pre = now;</span><br><span class="line">        now = next;</span><br><span class="line">    &#125;</span><br><span class="line">    return pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>我的解答：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode reverseList(ListNode head) &#123;</span><br><span class="line">    if (head == null || head.next == null) return head;</span><br><span class="line">    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    list.add(head.val);</span><br><span class="line">    while (head.next != null)&#123;</span><br><span class="line">        list.add(head.next.val);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode newNode = null;</span><br><span class="line">    ListNode temp = null;</span><br><span class="line">    for (int i = list.size() - 1;i&gt;=0;i--)&#123;</span><br><span class="line">        if (newNode == null)&#123;</span><br><span class="line">            newNode = new ListNode(list.get(i));</span><br><span class="line">            temp = newNode;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            temp.next = new ListNode(list.get(i));</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">给定有序数组: [-10,-3,0,5,9],</span><br><span class="line"></span><br><span class="line">一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：</span><br><span class="line"></span><br><span class="line">      0</span><br><span class="line">     / \</span><br><span class="line">   -3   9</span><br><span class="line">   /   /</span><br><span class="line"> -10  5</span><br></pre></td></tr></table></figure>
+<p>题解：<br>这道题是要将有序数组转为二叉搜索树，所谓二叉搜索树，是一种始终满足左&lt;根&lt;右（另外一种更直白的解释，二叉搜索树：空树或者二叉树的所有节点比他的左子节点大，比他的右子节点小。）的特性的二叉树，如果将二叉搜索树按中序遍历的话，得到的就是一个有序数组了。那么反过来，我们可以得知，根节点应该是有序数组的中间点，从中间点分开为左右两个有序数组，在分别找出其中间点作为原中间点的左右两个子节点，这不就是二分查找法的核心思想么。所以这道题考的就是二分查找法。</p>
+<p>我的解答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static TreeNode sortedArrayToBST(int[] nums) &#123;</span><br><span class="line">    return sortedArrayToBST(nums,0,nums.length - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static TreeNode sortedArrayToBST(int[] nums,int left,int   </span><br><span class="line">  right)&#123;</span><br><span class="line">    if (left &gt; right) return null;</span><br><span class="line">    int mid = (left + right) / 2;</span><br><span class="line">    TreeNode node = new TreeNode(nums[mid]);</span><br><span class="line">    node.left = sortedArrayToBST(nums,left,mid - 1);</span><br><span class="line">    node.right = sortedArrayToBST(nums,mid+1,right);</span><br><span class="line">    return node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -472,7 +473,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/链表/" rel="tag"># 链表</a>
+            <a href="/tags/树/" rel="tag"># 树</a>
           
         </div>
       
@@ -485,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/24/十大经典排序算法/" rel="next" title="十大经典排序算法">
-                <i class="fa fa-chevron-left"></i> 十大经典排序算法
+              <a href="/2019/02/13/二叉树的层次遍历/" rel="next" title="二叉树的层次遍历">
+                <i class="fa fa-chevron-left"></i> 二叉树的层次遍历
               </a>
             
           </div>
@@ -494,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/26/合并两个有序链表/" rel="prev" title="合并两个有序链表">
-                合并两个有序链表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

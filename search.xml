@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[将有序数组转换为二叉搜索树]]></title>
+    <url>%2F2019%2F02%2F14%2F%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：108 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 123456789给定有序数组: [-10,-3,0,5,9],一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树： 0 / \ -3 9 / / -10 5 题解：这道题是要将有序数组转为二叉搜索树，所谓二叉搜索树，是一种始终满足左&lt;根&lt;右（另外一种更直白的解释，二叉搜索树：空树或者二叉树的所有节点比他的左子节点大，比他的右子节点小。）的特性的二叉树，如果将二叉搜索树按中序遍历的话，得到的就是一个有序数组了。那么反过来，我们可以得知，根节点应该是有序数组的中间点，从中间点分开为左右两个有序数组，在分别找出其中间点作为原中间点的左右两个子节点，这不就是二分查找法的核心思想么。所以这道题考的就是二分查找法。 我的解答： 12345678910111213public static TreeNode sortedArrayToBST(int[] nums) &#123; return sortedArrayToBST(nums,0,nums.length - 1);&#125;private static TreeNode sortedArrayToBST(int[] nums,int left,int right)&#123; if (left &gt; right) return null; int mid = (left + right) / 2; TreeNode node = new TreeNode(nums[mid]); node.left = sortedArrayToBST(nums,left,mid - 1); node.right = sortedArrayToBST(nums,mid+1,right); return node;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[二叉树的层次遍历]]></title>
     <url>%2F2019%2F02%2F13%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：102 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如:给定二叉树: [3,9,20,null,null,15,7], 12345 3 / \9 20 / \ 15 7 返回其层次遍历结果： 12345[ [3], [9,20], [15,7]] 我的解答： 12345678910111213141516171819202122232425public static List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; List&lt;List&lt;Integer&gt;&gt; lists = new ArrayList&lt;&gt;(); Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.add(root); while (!queue.isEmpty())&#123; int size = queue.size(); List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); for (int i = 0;i &lt; size;i ++)&#123; TreeNode node = queue.poll(); if (node != null) &#123; list.add(node.val); queue.add(node.left); queue.add(node.right); &#125; &#125; if (list.size() != 0)&#123; lists.add(list); &#125; &#125; return lists;&#125;]]></content>
