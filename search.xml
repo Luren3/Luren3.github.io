@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[第一个错误的版本]]></title>
+    <url>%2F2019%2F02%2F18%2F%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：278 你是产品经理，目前正在带领一个团队开发新的产品。不幸的是，你的产品的最新版本没有通过质量检测。由于每个版本都是基于之前的版本开发的，所以错误的版本之后的所有版本都是错的。假设你有 n 个版本 [1, 2, …, n]，你想找出导致之后所有版本出错的第一个错误的版本。你可以通过调用 bool isBadVersion(version) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。 示例:1234567给定 n = 5，并且 version = 4 是第一个错误的版本。调用 isBadVersion(3) -&gt; false调用 isBadVersion(5) -&gt; true调用 isBadVersion(4) -&gt; true所以，4 是第一个错误的版本。 我的解答：1234567891011121314/* The isBadVersion API is defined in the parent class VersionControl. boolean isBadVersion(int version); */public static int firstBadVersion(int n) &#123; int low = 1, high = n; while(low &lt; high)&#123; int mid = low + (high - low)/2; if(isBadVersion(mid)) &#123; high = mid; &#125; else &#123; low = mid + 1; &#125; &#125; return high;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序,搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[将有序数组转换为二叉搜索树]]></title>
+    <url>%2F2019%2F02%2F15%2F%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：88 给定两个有序整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使得 num1 成为一个有序数组。 说明: 初始化 nums1 和 nums2 的元素数量分别为 m 和 n。 你可以假设 nums1 有足够的空间（空间大小大于或等于 m + n）来保存 nums2 中的元素。 示例: 12345输入:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6], n = 3输出: [1,2,2,3,5,6] 我的解答： 12345678910111213public static void merge(int[] nums1, int m, int[] nums2, int n) &#123; int[] newArr = new int[m+n]; for (int i = 0; i &lt; m;i++)&#123; newArr[i] = nums1[i]; &#125; for (int i = 0; i &lt; n;i++)&#123; newArr[m+i] = nums2[i]; &#125; Arrays.sort(newArr); for (int i = 0; i &lt; newArr.length;i++)&#123; nums1[i] = newArr[i]; &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[将有序数组转换为二叉搜索树]]></title>
     <url>%2F2019%2F02%2F14%2F%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：108 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。 示例: 123456789给定有序数组: [-10,-3,0,5,9],一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树： 0 / \ -3 9 / / -10 5 题解：这道题是要将有序数组转为二叉搜索树，所谓二叉搜索树，是一种始终满足左&lt;根&lt;右（另外一种更直白的解释，二叉搜索树：空树或者二叉树的所有节点比他的左子节点大，比他的右子节点小。）的特性的二叉树，如果将二叉搜索树按中序遍历的话，得到的就是一个有序数组了。那么反过来，我们可以得知，根节点应该是有序数组的中间点，从中间点分开为左右两个有序数组，在分别找出其中间点作为原中间点的左右两个子节点，这不就是二分查找法的核心思想么。所以这道题考的就是二分查找法。 我的解答： 12345678910111213public static TreeNode sortedArrayToBST(int[] nums) &#123; return sortedArrayToBST(nums,0,nums.length - 1);&#125;private static TreeNode sortedArrayToBST(int[] nums,int left,int right)&#123; if (left &gt; right) return null; int mid = (left + right) / 2; TreeNode node = new TreeNode(nums[mid]); node.left = sortedArrayToBST(nums,left,mid - 1); node.right = sortedArrayToBST(nums,mid+1,right); return node;&#125;]]></content>
