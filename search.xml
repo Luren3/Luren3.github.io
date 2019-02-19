@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[爬楼梯]]></title>
+    <url>%2F2019%2F02%2F19%2F%E7%88%AC%E6%A5%BC%E6%A2%AF%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：70 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？ 注意：给定 n 是一个正整数。 示例 1： 12345输入： 2输出： 2解释： 有两种方法可以爬到楼顶。1. 1 阶 + 1 阶2. 2 阶 示例 2： 123456输入： 3输出： 3解释： 有三种方法可以爬到楼顶。1. 1 阶 + 1 阶 + 1 阶2. 1 阶 + 2 阶3. 2 阶 + 1 阶 我的解答： 迭代 1234567891011public static int climbStairs(int n) &#123; if (n == 1) return 1; if (n == 2) return 2; int p = 2,q = 1; for (int i = 2;i&lt;n;i++)&#123; int sum = p + q; q = p; p = sum; &#125; return p;&#125; 递归 12345public static int climbStairs(int n) &#123; if (n == 1) return 1; if (n == 2) return 2; return climbStairs(n-1)+climbStairs(n-2);&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[第一个错误的版本]]></title>
     <url>%2F2019%2F02%2F18%2F%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：278 你是产品经理，目前正在带领一个团队开发新的产品。不幸的是，你的产品的最新版本没有通过质量检测。由于每个版本都是基于之前的版本开发的，所以错误的版本之后的所有版本都是错的。假设你有 n 个版本 [1, 2, …, n]，你想找出导致之后所有版本出错的第一个错误的版本。你可以通过调用 bool isBadVersion(version) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。 示例:1234567给定 n = 5，并且 version = 4 是第一个错误的版本。调用 isBadVersion(3) -&gt; false调用 isBadVersion(5) -&gt; true调用 isBadVersion(4) -&gt; true所以，4 是第一个错误的版本。 我的解答：1234567891011121314/* The isBadVersion API is defined in the parent class VersionControl. boolean isBadVersion(int version); */public static int firstBadVersion(int n) &#123; int low = 1, high = n; while(low &lt; high)&#123; int mid = low + (high - low)/2; if(isBadVersion(mid)) &#123; high = mid; &#125; else &#123; low = mid + 1; &#125; &#125; return high;&#125;]]></content>
