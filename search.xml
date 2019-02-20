@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Android 源码编译问题记录]]></title>
+    <url>%2F2019%2F02%2F20%2FAndroid%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[在Android 源码编译时遇到的相关问题记录 Ubuntu16.04 安装openJDK7/etc/apt/ sources.list的末尾加入：12deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main deb-src http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main 不同Ubuntu系统版本地址查看：https://launchpad.net/~openjdk-r/+archive/ubuntu/ppa 然后执行1sudo apt-get update 如果安装成功之后还是不能用可能不有多个版本，选的不对12sudo update-alternatives --config javasudo update-alternatives --config javac 选出正确的版本 编译源码导入Android Studio步骤12345678910111213ulimit -c unlimited //为了产生core文件，就是程序运行发行段错误时的文件make clobber //删除所有设置所生成的所有的output与中间文件source build/envsetup.sh //加载编译版本lunch //选择编译版本make -j4 2&gt;&amp;1 | tee build_log.txt //开始编译，并输出日志到build_log.txt文件//源码编译完成 生成可导入Android Studio的引用文件mmm development/tools/idegen/development/tools/idegen/idegen.sh]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>源码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git相关问题记录]]></title>
+    <url>%2F2019%2F02%2F20%2FGit%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
+    <content type="text"><![CDATA[git在使用中遇到的相关问题记录 连接Google git 源 设置http代理 1git config --global http.proxy &quot;http://127.0.0.1:1080&quot; 取消http代理 1git config --global --unset http.proxy 面对多账户设置SSH Key请参考https://blog.csdn.net/u011062426/article/details/47807341 本地对git config 的设置 可以设置一个全局的global user 12git config --global user.name &quot;xxx&quot;git config --gloabl user.email &quot;xxx@xxx.com&quot; 当多个账户的user信息不统一时，可以对单项目设置局部user信息 12git config user.name &quot;xxx&quot;git config user.email &quot;xxx@xxx.com&quot;]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[买卖股票的最佳时机]]></title>
     <url>%2F2019%2F02%2F20%2F%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：121 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。 注意你不能在买入股票前卖出股票。 示例 1: 1234输入: [7,1,5,3,6,4]输出: 5解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。 注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。 示例 2: 123输入: [7,6,4,3,1]输出: 0解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。 我的解答： 一次遍历： 123456789101112public int maxProfit(int[] prices) &#123; int profit = 0; int min = Integer.MAX_VALUE; for (int i = 0;i &lt; prices.length;i++)&#123; if (prices[i] &lt; min)&#123; min = prices[i]; &#125;else if (prices[i] - min &gt; profit)&#123; profit = prices[i] - min; &#125; &#125; return profit;&#125; 暴力法: 123456789101112public int maxProfit(int[] prices) &#123; int profit = 0; for (int i = 0;i &lt; prices.length - 1;i++)&#123; for (int j = i+1;j &lt; prices.length;j++)&#123; if (prices[i] &lt; prices[j])&#123; int value = prices[j] - prices[i]; profit = value &gt; profit?value:profit; &#125; &#125; &#125; return profit;&#125;]]></content>
