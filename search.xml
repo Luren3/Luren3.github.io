@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最大子序和]]></title>
+    <url>%2F2019%2F02%2F21%2F%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[LeetCode 题目：53 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。 示例:123输入: [-2,1,-3,4,-1,2,1,-5,4],输出: 6解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。 我的解答： Kadane算法 算法描述： 遍历该数组， 在遍历过程中， 将遍历到的元素依次累加起来， 当累加结果小于或等于0时， 从下一个元素开始，重新开始累加。 累加过程中， 要用一个变量 max 记录所获得过的最大值 一次遍历之后， 变量 max 中存储的即为最大子片段的和值。 1234567891011121314public static int maxSubArray(int[] nums) &#123; int max = nums[0]; int sum = 0; for (int num:nums)&#123; sum += num; if (sum &gt; max)&#123; max = sum; &#125; if (sum &lt; 0)&#123; sum = 0; &#125; &#125; return max;&#125; 穷举法 12345678910111213141516171819public static int maxSubArray(int[] nums) &#123; int max = nums[0]; int[] com = new int[nums.length]; com[0] = nums[0]; for (int i = 1;i&lt;nums.length;i++)&#123; com[i] = com[i-1]+nums[i]; &#125; for (int i=0;i&lt;nums.length;i++)&#123; int sum = 0; for (int j=i;j &lt; nums.length;j++)&#123; sum += nums[j]; if (sum &gt; max)&#123; max = sum; &#125; &#125; &#125; return max;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Android 源码编译问题记录]]></title>
     <url>%2F2019%2F02%2F20%2FAndroid%20%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%2F</url>
     <content type="text"><![CDATA[在Android 源码编译时遇到的相关问题记录 Ubuntu16.04 安装openJDK7/etc/apt/ sources.list的末尾加入：12deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main deb-src http://ppa.launchpad.net/openjdk-r/ppa/ubuntu xenial main 不同Ubuntu系统版本地址查看：https://launchpad.net/~openjdk-r/+archive/ubuntu/ppa 然后执行1sudo apt-get update 如果安装成功之后还是不能用可能不有多个版本，选的不对12sudo update-alternatives --config javasudo update-alternatives --config javac 选出正确的版本 编译源码导入Android Studio步骤12345678910111213ulimit -c unlimited //为了产生core文件，就是程序运行发行段错误时的文件make clobber //删除所有设置所生成的所有的output与中间文件source build/envsetup.sh //加载编译版本lunch //选择编译版本make -j4 2&gt;&amp;1 | tee build_log.txt //开始编译，并输出日志到build_log.txt文件//源码编译完成 生成可导入Android Studio的引用文件mmm development/tools/idegen/development/tools/idegen/idegen.sh]]></content>
