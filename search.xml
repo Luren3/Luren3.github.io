@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最小栈]]></title>
+    <url>%2F2019%2F02%2F26%2F%E6%9C%80%E5%B0%8F%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：155 设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。 push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。 top() – 获取栈顶元素。 getMin() – 检索栈中的最小元素。 示例: 12345678MinStack minStack = new MinStack();minStack.push(-2);minStack.push(0);minStack.push(-3);minStack.getMin(); --&gt; 返回 -3.minStack.pop();minStack.top(); --&gt; 返回 0.minStack.getMin(); --&gt; 返回 -2. 我的解答： 解题思路：一个栈来存储原始数据，另一个栈存储小于等于第一个元素 1234567891011121314151617181920212223242526272829303132333435363738public class MinStack &#123; public MinStack() &#123; stack = new Stack&lt;&gt;(); minStack = new Stack&lt;&gt;(); &#125; public void push(int x) &#123; stack.push(x); if (minStack.empty())&#123; minStack.push(x); &#125;else &#123; int temp = minStack.peek(); //只有当x小于等于minStack当前栈顶时候存入 if (temp &gt;= x)&#123; minStack.push(x); &#125; &#125; &#125; public void pop() &#123; if (top() == minStack.peek())&#123; minStack.pop(); &#125; stack.pop(); &#125; public int top() &#123; return stack.peek(); &#125; public int getMin() &#123; return minStack.peek(); &#125; private Stack&lt;Integer&gt; stack; private Stack&lt;Integer&gt; minStack;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>算法设计问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[打乱数组]]></title>
     <url>%2F2019%2F02%2F25%2F%E6%89%93%E4%B9%B1%E6%95%B0%E7%BB%84%2F</url>
-    <content type="text"><![CDATA[LeetCode 题号：384 打乱一个没有重复元素的数组。 示例: 123456789101112// 以数字集合 1, 2 和 3 初始化数组。int[] nums = &#123;1,2,3&#125;;Solution solution = new Solution(nums);// 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。solution.shuffle();// 重设数组到它的初始状态[1,2,3]。solution.reset();// 随机返回数组[1,2,3]打乱后的结果。solution.shuffle(); 我的解答： 12345678910111213141516171819202122232425public class ShuffleArray &#123; private int[] nums,originNums; public ShuffleArray(int[] nums) &#123; this.nums = nums; originNums = Arrays.copyOf(nums, nums.length); &#125; //重设数组到它的初始状态 public int[] reset() &#123; return originNums; &#125; //打乱数组，并返回结果。任何的排列返回的概率应该相同 public int[] shuffle() &#123; for (int i=nums.length;i &gt;0;i--)&#123; int rondom = new Random().nextInt(i); int temp = nums[rondom]; nums[rondom] = nums[i - 1]; nums[i - 1] = temp; &#125; return nums; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[LeetCode 题号：384 打乱一个没有重复元素的数组。 示例: 123456789101112// 以数字集合 1, 2 和 3 初始化数组。int[] nums = &#123;1,2,3&#125;;Solution solution = new Solution(nums);// 打乱数组 [1,2,3] 并返回结果。任何 [1,2,3]的排列返回的概率应该相同。solution.shuffle();// 重设数组到它的初始状态[1,2,3]。solution.reset();// 随机返回数组[1,2,3]打乱后的结果。solution.shuffle(); 我的解答： 解题思路：用两个数组，一个存储原始数据，另一个作为可乱数据。打乱数组要保证概率相同，先从数组最后一个下标，通过随机产生，来变更数据 12345678910111213141516171819202122232425public class ShuffleArray &#123; private int[] nums,originNums; public ShuffleArray(int[] nums) &#123; this.nums = nums; originNums = Arrays.copyOf(nums, nums.length); &#125; //重设数组到它的初始状态 public int[] reset() &#123; return originNums; &#125; //打乱数组，并返回结果。任何的排列返回的概率应该相同 public int[] shuffle() &#123; for (int i=nums.length;i &gt;0;i--)&#123; int rondom = new Random().nextInt(i); int temp = nums[rondom]; nums[rondom] = nums[i - 1]; nums[i - 1] = temp; &#125; return nums; &#125;&#125;]]></content>
       <categories>
         <category>算法</category>
       </categories>
