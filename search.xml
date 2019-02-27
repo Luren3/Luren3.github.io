@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Fizz Buzz]]></title>
+    <url>%2F2019%2F02%2F27%2FFizz%20Buzz%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：412 写一个程序，输出从 1 到 n 数字的字符串表示。 如果 n 是3的倍数，输出“Fizz”； 如果 n 是5的倍数，输出“Buzz”； 3.如果 n 同时是3和5的倍数，输出 “FizzBuzz”。 示例： 1234567891011121314151617181920n = 15,返回:[ &quot;1&quot;, &quot;2&quot;, &quot;Fizz&quot;, &quot;4&quot;, &quot;Buzz&quot;, &quot;Fizz&quot;, &quot;7&quot;, &quot;8&quot;, &quot;Fizz&quot;, &quot;Buzz&quot;, &quot;11&quot;, &quot;Fizz&quot;, &quot;13&quot;, &quot;14&quot;, &quot;FizzBuzz&quot;] 我的解答： 1234567891011121314151617181920212223public List&lt;String&gt; fizzBuzz(int n) &#123; List&lt;String&gt; result = new ArrayList&lt;&gt;(); for (int i=1;i &lt;= n;i++)&#123; String string = Integer.toString(i); if (i % 3 == 0 &amp;&amp; i % 5 == 0)&#123; string = &quot;FizzBuzz&quot;; result.add(string); continue; &#125; if (i % 3 == 0)&#123; string = &quot;Fizz&quot;; result.add(string); continue; &#125; if (i % 5 == 0)&#123; string = &quot;Buzz&quot;; result.add(string); continue; &#125; result.add(string); &#125; return result;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数学问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[最小栈]]></title>
     <url>%2F2019%2F02%2F26%2F%E6%9C%80%E5%B0%8F%E6%A0%88%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：155 设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。 push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。 top() – 获取栈顶元素。 getMin() – 检索栈中的最小元素。 示例: 12345678MinStack minStack = new MinStack();minStack.push(-2);minStack.push(0);minStack.push(-3);minStack.getMin(); --&gt; 返回 -3.minStack.pop();minStack.top(); --&gt; 返回 0.minStack.getMin(); --&gt; 返回 -2. 我的解答： 解题思路：一个栈来存储原始数据，另一个栈存储小于等于第一个元素 1234567891011121314151617181920212223242526272829303132333435363738public class MinStack &#123; public MinStack() &#123; stack = new Stack&lt;&gt;(); minStack = new Stack&lt;&gt;(); &#125; public void push(int x) &#123; stack.push(x); if (minStack.empty())&#123; minStack.push(x); &#125;else &#123; int temp = minStack.peek(); //只有当x小于等于minStack当前栈顶时候存入 if (temp &gt;= x)&#123; minStack.push(x); &#125; &#125; &#125; public void pop() &#123; if (top() == minStack.peek())&#123; minStack.pop(); &#125; stack.pop(); &#125; public int top() &#123; return stack.peek(); &#125; public int getMin() &#123; return minStack.peek(); &#125; private Stack&lt;Integer&gt; stack; private Stack&lt;Integer&gt; minStack;&#125;]]></content>
