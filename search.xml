@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Android的消息机制]]></title>
+    <url>%2F2019%2F02%2F27%2FAndroid%E7%9A%84%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%2F</url>
+    <content type="text"><![CDATA[消息的机制传递的流程，一般是创建Handler，然后通过send/post的方法(Handler内部都是通过send方法来发送消息)将一个Runnable投递到Handler的内部Looper去处理。当Handler调用send方法时，会调用MessageQueue的enqueueMessage方法将消息压入到消息队列中去，这时Looper会检测到新消息(因为Looper内部的loop方法，不断去循环调用MessageQueue的next方法)，会调用Handler的dispatchMessage来处理新消息。 下图是消息机制执行流程： Handler的主要作用将一个任务切换到某个指定线程去执行 系统为什么提供Handler主要为了解决在子线程中无法访问UI的问题 系统为什么不允许在子线程中访问UI因为UI控件不是线程安全的，在多并发操作控件时，可能导致线程安全问题 为什么通过Handler能实现线程的切换？在一个线程初始化Looper的时候，会通过ThreadLocal来进行保存，在Handler创建时，会通过ThreadLocal来取出线程对应的Looper，让Handler来持有，而Looper又持有当前线程的MessageQueue的引用,当Handler发送消息到MessageQueue中，Looper会从中取出消息(Message的标记所对应的Handler),调用Handler的方法进行消息处理，实现线程的切换。 Handler.post的逻辑在哪个线程执行的，是由Looper所在线程还是Handler所在线程决定的？ 由Looper所在线程决定的 最终逻辑是在Looper.loop()方法中，从MsgQueue中拿出msg，并且执行其逻辑，这是在Looper中执行的，因此有Looper所在线程决定。Handler为什么要有Callback的构造方法？不需要派生Handler MessageQueue中底层是通过什么来实现？采用单链表的数据结构来维护消息队列 MessageQueue的enqueueMessage()方法的原理，如何进行线程同步的？ 就是单链表的插入操作 如果消息队列被阻塞回调用nativeWake去唤醒。 用synchronized代码块去进行同步。 Looper.loop()的源码流程? 获取到Looper和消息队列 for无限循环，阻塞于消息队列的next方法 取出消息后调用msg.target.dispatchMessage(msg)进行消息分发 Looper.loop()在什么情况下会退出？ next方法返回的msg == null 线程意外终止 Looper.quit/quitSafely的本质是什么？让消息队列的next()返回null，依次来退出Looper.loop() 什么是ThreadLocalThreadLocal是一个线程内部的数据存储类，通过它可以在指定的线程中存储数据，数据存储后，只有在指定线程中可以获取存储的数据 ThreadLocal使用场景 当某些数据是以线程为作用域并且不同线程具有不同的数据副本的时候，就可以考虑采用ThreadLocal。比如对于Handler来说，它需要获取当前线程的Looper,很显然Looper的作用域就是线程并且不同线程具有不同的Looper,这个时候通过ThreadLocal就可以轻松实现Looper在线程中的存取 在复杂逻辑下的对象传递，比如监听器的传递，有些时候一个线程中的任务过于复杂，这可能表现为函数调用栈比较深以及代码入口的多样性，在这种情况下，我们又需要监听器能够贯穿整个线程的执行过程，这个时候可以怎么做呢？其实这时就可以采用ThreadLocal,采用ThreadLocal可以让监听器作为线程内的全局对象而存在，在线程内部只要通过get方法就可以获取到监听器。 ThreadLocal的原理 thread.threadLocals就是当前线程thread中的ThreadLocalMap ThreadLocalMap中有一个table数组，元素是Entry。根据ThreadLocal(需要转换获取到Hash Key)能get到对应的Enrty。 Entry中key为ThreadLocal, value就是存储的数值。]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>消息机制</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Fizz Buzz]]></title>
     <url>%2F2019%2F02%2F27%2FFizz%20Buzz%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：412 写一个程序，输出从 1 到 n 数字的字符串表示。 如果 n 是3的倍数，输出“Fizz”； 如果 n 是5的倍数，输出“Buzz”； 3.如果 n 同时是3和5的倍数，输出 “FizzBuzz”。 示例： 1234567891011121314151617181920n = 15,返回:[ &quot;1&quot;, &quot;2&quot;, &quot;Fizz&quot;, &quot;4&quot;, &quot;Buzz&quot;, &quot;Fizz&quot;, &quot;7&quot;, &quot;8&quot;, &quot;Fizz&quot;, &quot;Buzz&quot;, &quot;11&quot;, &quot;Fizz&quot;, &quot;13&quot;, &quot;14&quot;, &quot;FizzBuzz&quot;] 我的解答： 1234567891011121314151617181920212223public List&lt;String&gt; fizzBuzz(int n) &#123; List&lt;String&gt; result = new ArrayList&lt;&gt;(); for (int i=1;i &lt;= n;i++)&#123; String string = Integer.toString(i); if (i % 3 == 0 &amp;&amp; i % 5 == 0)&#123; string = &quot;FizzBuzz&quot;; result.add(string); continue; &#125; if (i % 3 == 0)&#123; string = &quot;Fizz&quot;; result.add(string); continue; &#125; if (i % 5 == 0)&#123; string = &quot;Buzz&quot;; result.add(string); continue; &#125; result.add(string); &#125; return result;&#125;]]></content>
