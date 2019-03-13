@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[求众数]]></title>
+    <url>%2F2019%2F03%2F13%2F%E6%B1%82%E4%BC%97%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：169 给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。你可以假设数组是非空的，并且给定的数组总是存在众数。 示例 1: 12输入: [3,2,3]输出: 3 示例 2: 12输入: [2,2,1,1,1,2,2]输出: 2 我的解答： 解法一： 解题思路：从第一个数开始index=1，遇到相同的就加1，遇到不同的就减1，减到0就重新换个数开始计数，总能找到最多的那个 123456789101112131415public static int majorityElement(int[] nums) &#123; int num = nums[0]; int index = 1; for (int i = 1;i&lt;nums.length;i++)&#123; if (num == nums[i])&#123; index++; &#125;else &#123; index--; if (index == 0 &amp;&amp; i &lt; nums.length -1)&#123; num = nums[i+1]; &#125; &#125; &#125; return num;&#125; 解法二： 解题思路：用一个map来存储，key是值，value是出现的次数，再对map进行遍历，比较那个值出现的次数最多 12345678910111213141516171819202122public static int majorityElement(int[] nums) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int n:nums)&#123; if (!map.containsKey(n))&#123; map.put(n,1); &#125;else &#123; int value = map.get(n); value++; map.put(n,value); &#125; &#125; int num = nums[0]; int index = map.get(num); for (int key:map.keySet())&#123; int value = map.get(key); if (index &lt; value)&#123; index = value; num = key; &#125; &#125; return num;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[缺失数字]]></title>
     <url>%2F2019%2F03%2F12%2F%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：268 给定一个包含 0, 1, 2, …, n 中 n 个数的序列，找出 0 .. n 中没有出现在序列中的那个数。 示例 1: 12输入: [3,0,1]输出: 2 示例 2: 12输入: [9,6,4,2,3,5,7,0,1]输出: 8 我的解答： 解题思路：利用差值计算，因为给出序列是一串连续的，所以不缺失的时的和是可以计算，将数组内数字和连续进行相减，最后得出就是缺失的数字 1234567public int missingNumber(int[] nums) &#123; int res=nums.length; for(int i=0;i&lt;nums.length;i++)&#123; res +=(i-nums[i]); &#125; return res;&#125; 利用位运算 解题思路：运用异或运算(相同为0，不同为1)，这样遍历从0开始，与数组内进行异或运算，相同就抵消，最后省下来的就是缺失的数字 1234567public int missingNumber(int[] nums) &#123; int n = 0; for(int i =0 ; i &lt; nums.length ; i++)&#123; n = n ^ i ^ nums[i]; &#125; return n ^ nums.length;&#125;]]></content>
