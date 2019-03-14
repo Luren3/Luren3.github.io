@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[搜索二维矩阵 II]]></title>
+    <url>%2F2019%2F03%2F14%2F%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：240 编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性： 每行的元素从左到右升序排列。 每列的元素从上到下升序排列。 示例: 12345678现有矩阵 matrix 如下：[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] 给定 target = 5，返回 true。给定 target = 20，返回 false。 我的解答： 解法一： 解题思路：从数组的左下角开始遍历。如果当前的数字大于target，我们向上移，因为上面的小于下面的；如果当前的数字小于target，我们向右移，因为右边的大于左边的 12345678910111213141516171819public static boolean searchMatrix(int[][] matrix, int target) &#123; if (matrix == null || matrix.length == 0) &#123; return false; &#125; int rows = matrix.length,cols = matrix[0].length; int row = rows - 1,col = 0; while (row &gt;= 0 &amp;&amp; col &lt; cols)&#123; if (matrix[row][col] == target)&#123; return true; &#125;else if (matrix[row][col] &gt; target)&#123; col = 0; row--; &#125;else &#123; col++; &#125; &#125; return false;&#125; 解法二： 解题思路：把数组的数据放在map中存储，再利用map判断是否包含target 123456789public boolean searchMatrix(int[][] matrix, int target) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int i=0;i&lt;matrix.length;i++)&#123; for (int j=0;j&lt;matrix[i].length;j++)&#123; map.put(matrix[i][j],matrix[i][j]); &#125; &#125; return map.containsKey(target);&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[求众数]]></title>
     <url>%2F2019%2F03%2F13%2F%E6%B1%82%E4%BC%97%E6%95%B0%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：169 给定一个大小为 n 的数组，找到其中的众数。众数是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。你可以假设数组是非空的，并且给定的数组总是存在众数。 示例 1: 12输入: [3,2,3]输出: 3 示例 2: 12输入: [2,2,1,1,1,2,2]输出: 2 我的解答： 解法一： 解题思路：从第一个数开始index=1，遇到相同的就加1，遇到不同的就减1，减到0就重新换个数开始计数，总能找到最多的那个 123456789101112131415public static int majorityElement(int[] nums) &#123; int num = nums[0]; int index = 1; for (int i = 1;i&lt;nums.length;i++)&#123; if (num == nums[i])&#123; index++; &#125;else &#123; index--; if (index == 0 &amp;&amp; i &lt; nums.length -1)&#123; num = nums[i+1]; &#125; &#125; &#125; return num;&#125; 解法二： 解题思路：用一个map来存储，key是值，value是出现的次数，再对map进行遍历，比较那个值出现的次数最多 12345678910111213141516171819202122public static int majorityElement(int[] nums) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int n:nums)&#123; if (!map.containsKey(n))&#123; map.put(n,1); &#125;else &#123; int value = map.get(n); value++; map.put(n,value); &#125; &#125; int num = nums[0]; int index = map.get(num); for (int key:map.keySet())&#123; int value = map.get(key); if (index &lt; value)&#123; index = value; num = key; &#125; &#125; return num;&#125;]]></content>
