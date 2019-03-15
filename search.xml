@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[鸡蛋掉落]]></title>
+    <url>%2F2019%2F03%2F15%2F%E9%B8%A1%E8%9B%8B%E6%8E%89%E8%90%BD%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：887 你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N 共有 N 层楼的建筑。每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。你知道存在楼层 F ，满足 0 &lt;= F &lt;= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 &lt;= X &lt;= N）。你的目标是确切地知道 F 的值是多少。无论 F 的初始值如何，你确定 F 的值的最小移动次数是多少？ 示例 1： 1234567输入：K = 1, N = 2输出：2解释：鸡蛋从 1 楼掉落。如果它碎了，我们肯定知道 F = 0 。否则，鸡蛋从 2 楼掉落。如果它碎了，我们肯定知道 F = 1 。如果它没碎，那么我们肯定知道 F = 2 。因此，在最坏的情况下我们需要移动 2 次以确定 F 是多少。 示例 2： 12输入：K = 2, N = 6输出：3 示例 3： 12输入：K = 3, N = 14输出：4 关于本题详细解题思路，请参考这篇文章 我的解答： 解题思路：计算k个鸡蛋在m步可测出几层 123456789101112public static int superEggDrop(int K, int N) &#123; int[][] dp = new int[K + 1][N + 1]; for (int m = 1; m &lt;= N; m++) &#123; for (int k = 1; k &lt;= K; k++) &#123; dp[k][m] = dp[k][m - 1] + dp[k - 1][m - 1] + 1; if (dp[k][m] &gt;= N) &#123; return m; &#125; &#125; &#125; return N;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[搜索二维矩阵 II]]></title>
     <url>%2F2019%2F03%2F14%2F%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：240 编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性： 每行的元素从左到右升序排列。 每列的元素从上到下升序排列。 示例: 12345678现有矩阵 matrix 如下：[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] 给定 target = 5，返回 true。给定 target = 20，返回 false。 我的解答： 解法一： 解题思路：从数组的左下角开始遍历。如果当前的数字大于target，我们向上移，因为上面的小于下面的；如果当前的数字小于target，我们向右移，因为右边的大于左边的 12345678910111213141516171819public static boolean searchMatrix(int[][] matrix, int target) &#123; if (matrix == null || matrix.length == 0) &#123; return false; &#125; int rows = matrix.length,cols = matrix[0].length; int row = rows - 1,col = 0; while (row &gt;= 0 &amp;&amp; col &lt; cols)&#123; if (matrix[row][col] == target)&#123; return true; &#125;else if (matrix[row][col] &gt; target)&#123; col = 0; row--; &#125;else &#123; col++; &#125; &#125; return false;&#125; 解法二： 解题思路：把数组的数据放在map中存储，再利用map判断是否包含target 123456789public boolean searchMatrix(int[][] matrix, int target) &#123; Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int i=0;i&lt;matrix.length;i++)&#123; for (int j=0;j&lt;matrix[i].length;j++)&#123; map.put(matrix[i][j],matrix[i][j]); &#125; &#125; return map.containsKey(target);&#125;]]></content>
