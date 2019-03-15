@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。 下图是Activity的启动步骤：   在桌面点击应用图标，Launcher所在的进程向AMS(处在SystemServer进程)请求startActivity AMS会判断启动Activity的所在进程是否存在(即应用所在的进程)">
+<meta name="description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。">
 <meta name="keywords" content="Activity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity的启动流程">
 <meta property="og:url" content="http://yoursite.com/2019/03/15/Activity的启动流程/index.html">
 <meta property="og:site_name" content="若只如初见">
-<meta property="og:description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。 下图是Activity的启动步骤：   在桌面点击应用图标，Launcher所在的进程向AMS(处在SystemServer进程)请求startActivity AMS会判断启动Activity的所在进程是否存在(即应用所在的进程)">
+<meta property="og:description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://uploader.shimo.im/f/MMTAsTDTIDMxvlPB.png!thumbnail">
-<meta property="og:updated_time" content="2019-03-15T13:51:39.896Z">
+<meta property="og:image" content="http://qiniu.androidar.xin/Activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B_1.png">
+<meta property="og:updated_time" content="2019-03-15T13:56:53.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity的启动流程">
-<meta name="twitter:description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。 下图是Activity的启动步骤：   在桌面点击应用图标，Launcher所在的进程向AMS(处在SystemServer进程)请求startActivity AMS会判断启动Activity的所在进程是否存在(即应用所在的进程)">
-<meta name="twitter:image" content="https://uploader.shimo.im/f/MMTAsTDTIDMxvlPB.png!thumbnail">
+<meta name="twitter:description" content="Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。">
+<meta name="twitter:image" content="http://qiniu.androidar.xin/Activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B_1.png">
 
 
 
@@ -342,7 +342,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-15T21:51:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-15T21:56:53+08:00">
                 2019-03-15
               </time>
             
@@ -452,8 +452,9 @@
 
       
         <p>Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。</p>
+<a id="more"></a>
 <p>下图是Activity的启动步骤：</p>
-<p><img src="https://uploader.shimo.im/f/MMTAsTDTIDMxvlPB.png!thumbnail" alt="图片"></p>
+<p><img src="http://qiniu.androidar.xin/Activity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B_1.png" alt="图片"></p>
 <ol>
 <li>在桌面点击应用图标，Launcher所在的进程向AMS(处在SystemServer进程)请求startActivity</li>
 <li>AMS会判断启动Activity的所在进程是否存在(即应用所在的进程)，如果不存在，会向Zygote请求创建应用进程；</li>
