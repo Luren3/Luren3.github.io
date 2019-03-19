@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[单词拆分]]></title>
+    <url>%2F2019%2F03%2F19%2F%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：139 给定一个非空字符串 s 和一个包含非空单词列表的字典 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。 说明： 拆分时可以重复使用字典中的单词。 你可以假设字典中没有重复的单词。 示例 1： 123输入: s = &quot;leetcode&quot;, wordDict = [&quot;leet&quot;, &quot;code&quot;]输出: true解释: 返回 true 因为 &quot;leetcode&quot; 可以被拆分成 &quot;leet code&quot;。 示例 2： 1234输入: s = &quot;applepenapple&quot;, wordDict = [&quot;apple&quot;, &quot;pen&quot;]输出: true解释: 返回 true 因为 &quot;applepenapple&quot; 可以被拆分成 &quot;apple pen apple&quot;。 注意你可以重复使用字典中的单词。 示例 3： 12输入: s = &quot;catsandog&quot;, wordDict = [&quot;cats&quot;, &quot;dog&quot;, &quot;sand&quot;, &quot;and&quot;, &quot;cat&quot;]输出: false 我的解答： 解题思路：动态规划，通过记录拆分后单词的下标，直到最后第二个单词的下标，到字符串最后位置，组成的单词，是否包含在字典里来判断 1234567891011121314public static boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123; int len = s.length(); boolean[] dp = new boolean[len + 1]; dp[0] = true; for (int i = 1; i &lt;= len; i++) for (int j = 0; j &lt; i; j++) &#123; String tmp = s.substring(j, i); if (dp[j] &amp;&amp; wordDict.contains(tmp)) &#123; dp[i] = true; break; &#125; &#125; return dp[len];&#125; 对上面进一步优化(LeetCode的最优解)： 解题思路：通过字典里最长的字符串长度，来减少第二层循环的次数 1234567891011121314151617181920public static boolean wordBreak(String s, List&lt;String&gt; wordDict) &#123; int n = s.length(); int max_length=0; for(String temp:wordDict)&#123; max_length = temp.length()&gt;max_length? temp.length():max_length; &#125; boolean[] memo = new boolean[n + 1]; memo[0] = true; for (int i = 1; i &lt;= n; i++) &#123; for (int j = i-1; j &gt;=0 &amp;&amp; max_length&gt;=i-j; j--) &#123; if (memo[j] &amp;&amp; wordDict.contains(s.substring(j, i))) &#123; memo[i] = true; break; &#125; &#125; &#125; return memo[n];&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[分割回文串]]></title>
+    <url>%2F2019%2F03%2F18%2F%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：131 给定一个字符串 s，将 s 分割成一些子串，使每个子串都是回文串。返回 s 所有可能的分割方案。 示例: 123456输入: &quot;aab&quot;输出:[ [&quot;aa&quot;,&quot;b&quot;], [&quot;a&quot;,&quot;a&quot;,&quot;b&quot;]] 我的解答 解题思路：递归回溯思路，在字符串s的第index位置开始寻找下一个回文字符串，list中存放的是之前的所有回文串。递归函数的出口是index指向了第s.length()个字符 123456789101112131415161718192021222324252627public static List&lt;List&lt;String&gt;&gt; partition(String s) &#123; List&lt;List&lt;String&gt;&gt; lists = new ArrayList&lt;&gt;(); partition(lists,s,0,new ArrayList&lt;String&gt;()); return lists;&#125;private static void partition(List&lt;List&lt;String&gt;&gt; lists,String s,int index,List&lt;String&gt; list) &#123; if (index == s.length())&#123; lists.add(new ArrayList&lt;String&gt;(list)); &#125; for (int i=index;i&lt;s.length();i++)&#123; String str = s.substring(index,i+1); if (isPalindrome(str))&#123; list.add(str); partition(lists,s,i+1,list); list.remove(list.size()-1); &#125; &#125;&#125;private static boolean isPalindrome(String s) &#123; for (int i = 0;i &lt; s.length()/2;i ++)&#123; if (s.charAt(i) != s.charAt(s.length() - 1 - i))&#123; return false; &#125; &#125; return true;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Activity的启动流程]]></title>
     <url>%2F2019%2F03%2F15%2FActivity%E7%9A%84%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[Activity的启动过程可以分为两种，一种是APP的第一次启动(从Launcher点击图标启动APP)，另一种是由一个Activity跳转到另一个Activity。 下图是Activity的启动步骤： 在桌面点击应用图标，Launcher所在的进程向AMS(处在SystemServer进程)请求startActivity AMS会判断启动Activity的所在进程是否存在(即应用所在的进程)，如果不存在，会向Zygote请求创建应用进程； 创建应用进程后，调用ActivityThread的main()方法，并且通过ApplicationThread与AMS建立Binder通信； AMS会通过ApplicationThread向ActivityThread发送消息，ActivityThread收到消息，会进行处理，调用handleLaunchActivity方法； 接着会调用performLaunchActivity方法，这时，会创建Activity所需的Context和Window，并为activity设置WindowManager对象，同时也调用Activity的onCreate()方法； 然后会调用performResumeActivity方法，这时会调用Activity的onResume()方法,将DecorView与WindowManager进行绑定 到此，Activity基本启动已完成，等UI绘制完，就可以看到完整的界面了]]></content>
