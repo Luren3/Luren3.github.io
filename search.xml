@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[实现 Trie (前缀树)]]></title>
+    <url>%2F2019%2F03%2F21%2F%E5%AE%9E%E7%8E%B0%20Trie%20(%E5%89%8D%E7%BC%80%E6%A0%91)%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：208 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。 示例: 12345678Trie trie = new Trie();trie.insert(&quot;apple&quot;);trie.search(&quot;apple&quot;); // 返回 truetrie.search(&quot;app&quot;); // 返回 falsetrie.startsWith(&quot;app&quot;); // 返回 truetrie.insert(&quot;app&quot;); trie.search(&quot;app&quot;); // 返回 true 说明: 你可以假设所有的输入都是由小写字母 a-z 构成的。 保证所有输入均为非空字符串。 我的解答 解题思路：通过不断的插入新的字符串来丰富26叉数（依据6个英文字母） 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556public class Trie &#123; private TreeNode node; /** Initialize your data structure here. */ public Trie() &#123; node = new TreeNode(); &#125; /** Inserts a word into the trie. */ public void insert(String word) &#123; TreeNode node = this.node; for (char c:word.toCharArray())&#123; if (node.child[c - &apos;a&apos;] == null)&#123; node.child[c - &apos;a&apos;] = new TreeNode(); &#125; node = node.child[c - &apos;a&apos;]; &#125; node.value = word; &#125; /** Returns if the word is in the trie. */ public boolean search(String word) &#123; TreeNode node = this.node; for (char c:word.toCharArray())&#123; if (node.child[c - &apos;a&apos;] == null)&#123; return false; &#125; node = node.child[c - &apos;a&apos;]; &#125; return node.value.equals(word); &#125; /** Returns if there is any word in the trie that starts with the given prefix. */ public boolean startsWith(String prefix) &#123; TreeNode node = this.node; for (char c:prefix.toCharArray())&#123; if (node.child[c - &apos;a&apos;] == null)&#123; return false; &#125; node = node.child[c - &apos;a&apos;]; &#125; return true; &#125; class TreeNode&#123; String value; TreeNode[] child; public TreeNode()&#123; value = &quot;&quot;; child = new TreeNode[26]; &#125; &#125;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Binder机制]]></title>
     <url>%2F2019%2F03%2F20%2FBinder%E6%9C%BA%E5%88%B6%2F</url>
     <content type="text"><![CDATA[Binder是Android系统进程间通信（IPC）方式之一。传统的IPC如管道、Scoket等，都是属于内核一部分，通过内核来进行跨进程通信。而Binder不属于内核，Android利用Linux的动态内核加载技术，将Binder驱动挂载为动态内核，然后通过Binder驱动以mmap的方式将内核空间与接收方的用户空间进行内存映射。 内存映射(mmap)：将用户空间的一块内存区域映射到内核空间。映射关系建立后，用户对这块内存区域的修改可以直接反应到内核空间；反之内核空间对这段区域的修改也能直接反应到用户空间。 Binder通信原理 首先 Binder 驱动在内核空间创建一个数据接收缓存区； 接着在内核空间开辟一块内核缓存区，建立内核缓存区和内核中数据接收缓存区之间的映射关系，以及内核中数据接收缓存区和接收进程用户空间地址的映射关系； 数据发送进程调用系统copy_from_user()方法，将数据copy到内核缓存区，由于内核缓存区和数据接收进程的用户空间存在内存映射，相当于将数据发送到接收进程的用户空间 下图是Binder通信原理： Binder通信模型Binder框架定义了四个角色：Server，Client，ServiceManager以及Binder驱动。其中Server，Client，ServiceManager运行于用户空间，驱动运行于内核空间。这四个角色的关系和互联网类似：Server是服务器，Client是客户终端，ServiceManager是域名服务器（DNS），驱动是路由器。 关于通信模型的详细介绍可以参考这篇文章 Binder通信过程 Android在启动时，SystemServer通过Binder驱动将自己注册为ServiceManager； Server通过Binder驱动向ServiceManager注册Binder(Server中的Binder实体)，表明可以对外可以提供服务； Client通过Binder驱动查询，可以获得这个Binder实体的引用； Client获得Server的引用后，就可以Binder驱动发送数据和获取数据 下图是Binder的通信过程：]]></content>
