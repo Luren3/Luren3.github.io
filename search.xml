@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[递增的三元子序列]]></title>
+    <url>%2F2019%2F03%2F26%2F%E9%80%92%E5%A2%9E%E7%9A%84%E4%B8%89%E5%85%83%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：334 给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。 数学表达式如下: 如果存在这样的 i, j, k, 且满足 0 ≤ i &lt; j &lt; k ≤ n-1，使得 arr[i] &lt; arr[j] &lt; arr[k] ，返回 true ; 否则返回 false 。 说明: 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1) 。 示例 1: 12输入: [1,2,3,4,5]输出: true 示例 2: 12输入: [5,4,3,2,1]输出: false 我的解答 解题思路：确定数组中是否存在三个递增的数，可以先后确定第一个，第二个，是否存在第三个，如果存在，证明是符合需求，反之亦然 12345678910111213141516171819public static boolean increasingTriplet(int[] nums) &#123; if (nums.length &lt; 3) return false; int first = Integer.MAX_VALUE,second = Integer.MAX_VALUE; for (int num:nums)&#123; if (first &gt; num)&#123; first = num; continue; &#125; if (first &lt; num &amp;&amp; num &lt; second)&#123; second = num; continue; &#125; if (num &gt; second)&#123; return true; &#125; &#125; return false;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[乘积最大子序列]]></title>
     <url>%2F2019%2F03%2F25%2F%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：152 给定一个整数数组 nums ，找出一个序列中乘积最大的连续子序列（该序列至少包含一个数）。 示例 1: 123输入: [2,3,-2,4]输出: 6解释: 子数组 [2,3] 有最大乘积 6。 示例 2: 123输入: [-2,0,-1]输出: 0解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。 我的解答： 解答一（暴力法） 12345678910111213public int maxProduct(int[] nums) &#123; int result = nums[0]; for (int i=0;i&lt;nums.length;i++)&#123; int product = 1; for (int j=i;i&lt;nums.length;j++)&#123; product *= nums[i]; if (product &gt; result)&#123; result = product; &#125; &#125; &#125; return result;&#125; 解答二（动态规划） 解题思路：考虑到乘积子序列中有正也有负或者0，虽然只要求一个最大积，但由于负数的存在，不但纪录最大乘积，也要记录最小乘积。利用动态规划来求解，用max[i]来表示以nums[i]结尾的最大连续子串的乘积，用min[i]表示以nums[i]结尾的最小连续子串的乘积 123456789101112public int maxProduct(int[] nums) &#123; int max = nums[0]; int min = nums[0]; int result = nums[0]; for (int i=1;i&lt;nums.length;i++)&#123; int tem = max; max = Math.max(Math.max(max*nums[i],min*nums[i]),nums[i]); min = Math.min(Math.min(tem*nums[i],min*nums[i]),nums[i]); result = Math.max(max,result); &#125; return result;&#125;]]></content>
