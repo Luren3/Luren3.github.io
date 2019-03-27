@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[除自身以外数组的乘积]]></title>
+    <url>%2F2019%2F03%2F27%2F%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：238 给定长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。 示例: 12输入: [1,2,3,4]输出: [24,12,8,6] 说明: 请不要使用除法，且在 O(n) 时间复杂度内完成此题。 进阶： 你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组不被视为额外空间。） 我的解答 解法一 解题思路：每一个数都是除了自身之外，左边数的乘积 乘以 右边数的乘积 12345678910111213141516public static int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] newNums = new int[n]; int[] left = new int[n]; int[] right = new int[n]; left[0] = 1; right[n-1] = 1; for (int i=1;i&lt;n;i++)&#123; left[i] = nums[i-1] * left[i-1]; right[n-1-i] =nums[n-i] * right[n-i]; &#125; for (int i=0;i&lt;nums.length;i++)&#123; newNums[i] = left[i] * right[i]; &#125; return newNums;&#125; 解法二 解题思路：对解法一的优化版本 123456789101112131415public static int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] newNums = new int[n]; int left = 1; int right = 1; for (int i=0;i&lt;n;i++)&#123; newNums[i] = left; left *= nums[i]; &#125; for (int i=n-1;i&gt;=0;i--)&#123; newNums[i] *= right; right *= nums[i]; &#125; return newNums;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[递增的三元子序列]]></title>
     <url>%2F2019%2F03%2F26%2F%E9%80%92%E5%A2%9E%E7%9A%84%E4%B8%89%E5%85%83%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：334 给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。 数学表达式如下: 如果存在这样的 i, j, k, 且满足 0 ≤ i &lt; j &lt; k ≤ n-1，使得 arr[i] &lt; arr[j] &lt; arr[k] ，返回 true ; 否则返回 false 。 说明: 要求算法的时间复杂度为 O(n)，空间复杂度为 O(1) 。 示例 1: 12输入: [1,2,3,4,5]输出: true 示例 2: 12输入: [5,4,3,2,1]输出: false 我的解答 解题思路：确定数组中是否存在三个递增的数，可以先后确定第一个，第二个，是否存在第三个，如果存在，证明是符合需求，反之亦然 12345678910111213141516171819public static boolean increasingTriplet(int[] nums) &#123; if (nums.length &lt; 3) return false; int first = Integer.MAX_VALUE,second = Integer.MAX_VALUE; for (int num:nums)&#123; if (first &gt; num)&#123; first = num; continue; &#125; if (first &lt; num &amp;&amp; num &lt; second)&#123; second = num; continue; &#125; if (num &gt; second)&#123; return true; &#125; &#125; return false;&#125;]]></content>
