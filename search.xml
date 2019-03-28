@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数组中的第K个最大元素]]></title>
+    <url>%2F2019%2F03%2F28%2F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：215 在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。 示例 1: 12输入: [3,2,1,5,6,4] 和 k = 2输出: 5 示例 2: 12输入: [3,2,3,1,2,4,5,5,6] 和 k = 4输出: 4 说明: 你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。 我的解答： 解法一 解题思路：用PriorityQueue(添加数据，会进行从小大排序)来存储数组数据，超过k的大小，就移除；遍历完nums，取出的第一个数就对应的最大元素 12345678910public static int findKthLargest(int[] nums, int k) &#123; PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;&gt;(); for (int num:nums)&#123; queue.add(num); if (queue.size() &gt; k)&#123; queue.poll(); &#125; &#125; return queue.peek();&#125; 解法二 解题思路：先对数组nums进行从小大排序，取出数组倒数第k个下标的数就是对应的最大元素 1234public static int findKthLargest(int[] nums, int k) &#123; Arrays.sort(nums); return nums[nums.length - k];&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>堆栈</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[View、WindowsheViewRootImpl的关系]]></title>
     <url>%2F2019%2F03%2F27%2FView%E3%80%81Windows%E5%92%8CViewRootImpl%E7%9A%84%E5%85%B3%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[梳理在Activity的启动过程中，View、Windows和ViewRootImpl的关系。 下图是View、WindowsheViewRootImpl的关系流程图： 在Activity的启动过程中，在ActivityThread中调用performLaunchActivity方法会调用Activity的attach()方法，这时会创建PhoneWindow； Window创建后，会调用setWindowManager方法，让Window与WIndowManager进行绑定； 之后在handleResumeActivity方法中DecorView与WindowManager进行了绑定，即WM调用了addView方法。addView的最终执行是由WindowManagerGlobal来执行。 在执行addView时，创建了ViewRootImpl（其实对View的最终操作，如添加，删除等都是它来完成的），之后调用setView方法 接下来就是对View的绘制过程，然后ViewRootImpl会通过WindowSession跟WMS（WindowManagerService）进行通信，完成对Window的添加 完成Window的添加后，最后让DecorView显示出来。]]></content>
