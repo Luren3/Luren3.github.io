@@ -2,6 +2,18 @@
 <search>
   <entry>
     <title><![CDATA[有序矩阵中第K小的元素]]></title>
+    <url>%2F2019%2F04%2F01%2F%E5%89%8DK%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：347 给定一个非空的整数数组，返回其中出现频率前 k 高的元素。 示例 1: 12输入: nums = [1,1,1,2,2,3], k = 2输出: [1,2] 示例 2: 12输入: nums = [1], k = 1输出: [1] 说明： 你可以假设给定的 k 总是合理的，且 1 ≤ k ≤ 数组中不相同的元素的个数。 你的算法的时间复杂度必须优于 O(n log n) , n 是数组的大小。 我的解答 解题思路：把数组的数据放大Map存起来，key是具体数字，value是在数组出现的次数，然后按从大到小排列，最后取前k个数字 12345678910111213141516171819202122232425262728293031323334public static List&lt;Integer&gt; topKFrequent(int[] nums, int k) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); PriorityQueue&lt;Map.Entry&lt;Integer,Integer&gt;&gt; pq = new PriorityQueue&lt;&gt; (new Comparator&lt;Map.Entry&lt;Integer, Integer&gt;&gt;() &#123; @Override public int compare(Map.Entry&lt;Integer, Integer&gt; o1, Map.Entry&lt;Integer, Integer&gt; o2) &#123; return o2.getValue()-o1.getValue(); &#125; &#125;); Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;(); for (int i = 0; i &lt; nums.length; i++) &#123; if (map.containsKey(nums[i])) map.put(nums[i], map.get(nums[i]) + 1); else map.put(nums[i], 1); &#125; Set&lt;Map.Entry&lt;Integer,Integer&gt;&gt; set = map.entrySet(); for (Map.Entry&lt;Integer,Integer&gt; entry : set) &#123; pq.add(entry); &#125; for (int i = 0; i &lt; k; i++) &#123; list.add(pq.poll().getKey()); &#125; return list;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>堆栈</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[有序矩阵中第K小的元素]]></title>
     <url>%2F2019%2F03%2F30%2F%E6%9C%89%E5%BA%8F%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：378 给定一个 n x n 矩阵，其中每行和每列元素均按升序排序，找到矩阵中第k小的元素。请注意，它是排序后的第k小元素，而不是第k个元素。 示例: 12345678matrix = [ [ 1, 5, 9], [10, 11, 13], [12, 13, 15]],k = 8,返回 13。 说明: 你可以假设 k 的值永远是有效的, 1 ≤ k ≤ n2 。 我的解答 解法一(遍历) 解题思路：用新数组存储矩阵所有元素，最后排序，取出k-1个元素就是想要的结果 123456789101112131415public static int kthSmallest(int[][] matrix, int k) &#123; int row = matrix.length; int col = matrix[0].length; int n = row * col; int[] arr = new int[n]; int index = 0; for (int i=0;i&lt;matrix.length;i++)&#123; for (int j=0;j&lt;matrix[i].length;j++)&#123; arr[index] = matrix[i][j]; index++; &#125; &#125; Arrays.sort(arr); return arr[k];&#125; 解法二(二分查找) 解题思路：由于是有序矩阵，那么左上角的数字一定是最小的，而右下角的数字一定是最大的，所以这个是搜索的范围，然后算出中间数字mid，由于矩阵中不同行之间的元素并不是严格有序的，所以要在每一行都查找一下mid，遍历查找第一个大于目标数的元素，如果目标数在比该行的尾元素大，则count返回该行元素的个数，如果目标数比该行首元素小，则换下一行, 遍历完所有的行可以找出中间数是第几小的数，然后与k比较，进行二分查找，left和right最终会相等，并且会变成数组中第k小的数字。 1234567891011121314151617181920212223public static int kthSmallest(int[][] matrix, int k) &#123; int n = matrix.length; int left = matrix[0][0]; int right = matrix[n-1][n-1]; while (left &lt; right)&#123; int mid = left + (right-left)/2; int count = 0; for (int i=n-1,j=0;i&gt;=0 &amp;&amp; j&lt;n;)&#123; if (matrix[i][j] &gt; mid)&#123; i--; &#125;else &#123; j++; count += i+1; &#125; &#125; if (count &lt; k)&#123; left = mid + 1; &#125;else &#123; right = mid; &#125; &#125; return left;&#125;]]></content>
       <categories>
