@@ -87,7 +87,7 @@
 <meta name="keywords" content="消息机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android的消息机制">
-<meta property="og:url" content="http://yoursite.com/2019/02/27/Android的消息机制/index.html">
+<meta property="og:url" content="http://magicfrost.cn/2019/02/27/Android的消息机制/index.html">
 <meta property="og:site_name" content="若只如初见">
 <meta property="og:description" content="消息的机制传递的流程，一般是创建Handler，然后通过send/post的方法(Handler内部都是通过send方法来发送消息)将一个Runnable投递到Handler的内部Looper去处理。当Handler调用send方法时，会调用MessageQueue的enqueueMessage方法将消息压入到消息队列中去，这时Looper会检测到新消息(因为Looper内部的loop方法，不断去">
 <meta property="og:locale" content="zh-Hans">
@@ -126,7 +126,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/27/Android的消息机制/">
+  <link rel="canonical" href="http://magicfrost.cn/2019/02/27/Android的消息机制/">
 
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/Android的消息机制/">
+    <link itemprop="mainEntityOfPage" href="http://magicfrost.cn/2019/02/27/Android的消息机制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MagicFrost">
@@ -1346,6 +1346,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   
