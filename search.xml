@@ -131,7 +131,7 @@
     <url>%2F2019%2F03%2F27%2FView%E3%80%81Windows%E5%92%8CViewRootImpl%E7%9A%84%E5%85%B3%E7%B3%BB%2F</url>
     <content type="text"><![CDATA[梳理在Activity的启动过程中，View、Windows和ViewRootImpl的关系。 下图是View、WindowsheViewRootImpl的关系流程图： 在Activity的启动过程中，在ActivityThread中调用performLaunchActivity方法会调用Activity的attach()方法，这时会创建PhoneWindow； Window创建后，会调用setWindowManager方法，让Window与WIndowManager进行绑定； 之后在handleResumeActivity方法中DecorView与WindowManager进行了绑定，即WM调用了addView方法。addView的最终执行是由WindowManagerGlobal来执行。 在执行addView时，创建了ViewRootImpl（其实对View的最终操作，如添加，删除等都是它来完成的），之后调用setView方法 接下来就是对View的绘制过程，然后ViewRootImpl会通过WindowSession跟WMS（WindowManagerService）进行通信，完成对Window的添加 完成Window的添加后，最后让DecorView显示出来。]]></content>
       <categories>
-        <category>Andorid</category>
+        <category>Android</category>
       </categories>
       <tags>
         <tag>View</tag>
