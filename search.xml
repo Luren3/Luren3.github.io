@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[奇偶链表]]></title>
+    <url>%2F2019%2F04%2F15%2F%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：328 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。 请尝试使用原地算法完成。你的算法的空间复杂度应为 O(1)，时间复杂度应为 O(nodes)，nodes 为节点总数。 示例 1: 12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 1-&gt;3-&gt;5-&gt;2-&gt;4-&gt;NULL 示例 2: 12输入: 2-&gt;1-&gt;3-&gt;5-&gt;6-&gt;4-&gt;7-&gt;NULL 输出: 2-&gt;3-&gt;6-&gt;7-&gt;1-&gt;5-&gt;4-&gt;NULL 说明: 应当保持奇数节点和偶数节点的相对顺序。 链表的第一个节点视为奇数节点，第二个节点视为偶数节点，以此类推。 我的解答 解题思路：遍历链表head,分两段添加，奇数位添加到odd链表，偶数位添加到even链表,最后遍历完，把偶数链表拼接到奇数链表后面 12345678910111213141516171819202122232425262728293031public static ListNode oddEvenList(ListNode head) &#123; ListNode odd = null,even = null; ListNode oddCur = null; ListNode evenCur = null; int index = 1; while (head != null)&#123; if (index%2 == 0)&#123; if (even == null)&#123; even = new ListNode(head.val); evenCur = even; &#125;else &#123; evenCur.next = new ListNode(head.val); evenCur = evenCur.next; &#125; &#125;else &#123; if (odd == null)&#123; odd = new ListNode(head.val); oddCur = odd; &#125;else &#123; oddCur.next = new ListNode(head.val); oddCur = oddCur.next; &#125; &#125; head = head.next; index++; if (head == null)&#123; oddCur.next = even; &#125; &#125; return odd;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>中等</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[相交链表]]></title>
     <url>%2F2019%2F04%2F12%2F%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：160 编写一个程序，找到两个单链表相交的起始节点。 如下面的两个链表： 在节点 c1 开始相交。 示例 1： 123输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3输出：Reference of the node with value = 8输入解释：相交节点的值为 8 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。 示例 2： 123输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1输出：Reference of the node with value = 2输入解释：相交节点的值为 2 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。 示例 3： 1234输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2输出：null输入解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。解释：这两个链表不相交，因此返回 null。 注意： 如果两个链表没有交点，返回 null. 在返回结果后，两个链表仍须保持原有的结构。 可假定整个链表结构中没有循环。 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。 我的解答 解题思路：先遍历headA和headB,得到两个链表的长度。根据长度可知两个链表的谁长谁短,然后根据两个长度的差值len，先让长的链表走len节点，最后遍历比较两个链表，知道两个链表相交 1234567891011121314151617181920212223242526272829public ListNode getIntersectionNode(ListNode headA, ListNode headB) &#123; int lenA = 0,lenB = 0; ListNode longNode = headA,shortNode = headB; while (longNode != null)&#123; lenA++; longNode = longNode.next; &#125; while (shortNode != null)&#123; lenB++; shortNode = shortNode.next; &#125; if (lenA &lt; lenB)&#123; longNode = headB; shortNode = headA; &#125;else &#123; longNode = headA; shortNode = headB; &#125; int len = Math.abs(lenA - lenB); for (int i = 0;i &lt; len;i++)&#123; longNode = longNode.next; &#125; while (longNode != shortNode)&#123; longNode = longNode.next; shortNode = shortNode.next; &#125; return longNode;&#125;]]></content>
