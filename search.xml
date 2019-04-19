@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二叉搜索树中第K小的元素]]></title>
+    <url>%2F2019%2F04%2F19%2F%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：230 给定一个二叉搜索树，编写一个函数 kthSmallest 来查找其中第 k 个最小的元素。 说明：你可以假设 k 总是有效的，1 ≤ k ≤ 二叉搜索树元素个数。 示例 1: 1234567输入: root = [3,1,4,null,2], k = 1 3 / \ 1 4 \ 2输出: 1 示例 2: 123456789输入: root = [5,3,6,2,4,null,null,1], k = 3 5 / \ 3 6 / \ 2 4 / 1输出: 3 进阶： 如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 k 小的值，你将如何优化 kthSmallest 函数？ 我的解答 解题思路：已知是二叉搜索树，求k个最小。通过中序遍历,从最小的元素开始计数index，当index = k时，进行赋值，得出最k个小元素值 1234567891011121314public int index = 0,value = 0;public int kthSmallest(TreeNode root, int k) &#123; travers(root,k); return value;&#125;private void travers(TreeNode root,int k) &#123; if (root == null) return; travers(root.left, k); index++; if (index == k)&#123; value = root.val; &#125; travers(root.right,k);&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>中等</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[常数时间插入、删除和获取随机元素]]></title>
     <url>%2F2019%2F04%2F18%2F%E5%B8%B8%E6%95%B0%E6%97%B6%E9%97%B4%E6%8F%92%E5%85%A5%E3%80%81%E5%88%A0%E9%99%A4%E5%92%8C%E8%8E%B7%E5%8F%96%E9%9A%8F%E6%9C%BA%E5%85%83%E7%B4%A0%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：380 设计一个支持在平均 时间复杂度 O(1) 下，执行以下操作的数据结构。 insert(val)：当元素 val 不存在时，向集合中插入该项。 remove(val)：元素 val 存在时，从集合中移除该项。 getRandom：随机返回现有集合中的一项。每个元素应该有相同的概率被返回。 示例 : 1234567891011121314151617181920212223// 初始化一个空的集合。RandomizedSet randomSet = new RandomizedSet();// 向集合中插入 1 。返回 true 表示 1 被成功地插入。randomSet.insert(1);// 返回 false ，表示集合中不存在 2 。randomSet.remove(2);// 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。randomSet.insert(2);// getRandom 应随机返回 1 或 2 。randomSet.getRandom();// 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。randomSet.remove(1);// 2 已在集合中，所以返回 false 。randomSet.insert(2);// 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。randomSet.getRandom(); 我的解答 解题思路：用List的来存储元素,用Map来存储元素和元素下标(加快元素的检索速度) 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556public class RandomizedSet &#123; private ArrayList&lt;Integer&gt; list; private HashMap&lt;Integer,Integer&gt; map; private Random random; /** Initialize your data structure here. */ public RandomizedSet() &#123; list = new ArrayList&lt;&gt;(); map = new HashMap&lt;&gt;(); random = new Random(); &#125; /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */ public boolean insert(int val) &#123; if (map.containsKey(val)) &#123; return false; &#125; map.put(val,list.size()); list.add(val); return true; &#125; /** Removes a value from the set. Returns true if the set contained the specified element. */ public boolean remove(int val) &#123; if (map.containsKey(val)) &#123; int index = map.get(val); //每次直接删除会导致list中的元素下标会发生变化,这里先将要删除的元 //素,用最后一个元素替换掉，再将最后一个元素删掉,达到删除的目的 if (index != list.size() - 1)&#123; int last = list.get(list.size() - 1); list.set(index,last); map.put(last,index); &#125; list.remove(list.size() - 1); map.remove(val); return true; &#125; return false; &#125; /** Get a random element from the set. */ public int getRandom() &#123; int index = random.nextInt(list.size()); return list.get(index); &#125;&#125;/** * Your RandomizedSet object will be instantiated and called as such: * RandomizedSet obj = new RandomizedSet(); * boolean param_1 = obj.insert(val); * boolean param_2 = obj.remove(val); * int param_3 = obj.getRandom(); */]]></content>
