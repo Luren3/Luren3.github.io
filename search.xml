@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[二叉树的最近公共祖先]]></title>
+    <url>%2F2019%2F04%2F22%2F%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：236 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”例如，给定如下二叉树: root = [3,5,1,6,2,0,8,null,null,7,4] 示例 1: 123输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1输出: 3解释: 节点 5 和节点 1 的最近公共祖先是节点 3。 示例 2: 123输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4输出: 5解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。 说明: 所有节点的值都是唯一的。 p、q 为不同节点且均存在于给定的二叉树中。 我的解答 解题思路：LCA问题，通过递归，如果去p,q任意一个与root相匹配，那么root就是最近公共祖先。如果都不匹配，则分别递归左、右子树，如果有一个节点出现在左子树，并且另一个节点出现在右子树，则root就是最低公共祖先. 如果两个节点都出现在左子树，则说明最低公共祖先在左子树中，否则在右子树。 123456789101112131415161718public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) &#123; if (root == null) &#123; return root; &#125; if (root.val == p.val || root.val == q.val) &#123; return root; &#125; TreeNode left = lowestCommonAncestor(root.left, p, q); TreeNode right = lowestCommonAncestor(root.right, p, q); if (left != null &amp;&amp; right != null) &#123; return root; &#125; else if (left != null) &#123; return left; &#125; else if (right != null) &#123; return right; &#125; return null;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>中等</tag>
+        <tag>树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[二叉搜索树中第K小的元素]]></title>
     <url>%2F2019%2F04%2F19%2F%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：230 给定一个二叉搜索树，编写一个函数 kthSmallest 来查找其中第 k 个最小的元素。 说明：你可以假设 k 总是有效的，1 ≤ k ≤ 二叉搜索树元素个数。 示例 1: 1234567输入: root = [3,1,4,null,2], k = 1 3 / \ 1 4 \ 2输出: 1 示例 2: 123456789输入: root = [5,3,6,2,4,null,null,1], k = 3 5 / \ 3 6 / \ 2 4 / 1输出: 3 进阶： 如果二叉搜索树经常被修改（插入/删除操作）并且你需要频繁地查找第 k 小的值，你将如何优化 kthSmallest 函数？ 我的解答 解题思路：已知是二叉搜索树，求k个最小。通过中序遍历,从最小的元素开始计数index，当index = k时，进行赋值，得出最k个小元素值 1234567891011121314public int index = 0,value = 0;public int kthSmallest(TreeNode root, int k) &#123; travers(root,k); return value;&#125;private void travers(TreeNode root,int k) &#123; if (root == null) return; travers(root.left, k); index++; if (index == k)&#123; value = root.val; &#125; travers(root.right,k);&#125;]]></content>
