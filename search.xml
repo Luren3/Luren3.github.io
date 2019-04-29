@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最长连续序列]]></title>
+    <url>%2F2019%2F04%2F29%2F%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：300 给定一个无序的整数数组，找到其中最长上升子序列的长度。 示例: 123输入: [10,9,2,5,3,7,101,18]输出: 4 解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。 说明: 可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。 你算法的时间复杂度应该为 O(n**2) 。 进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 我的解答 解法一 解题思路：通过动态规划，通过dp数组不断记录在每个数组下标时，子序列最大的上升长度，最后在比较dp数组中最大的子序列长度 1234567891011121314public static int lengthOfLIS(int[] nums) &#123; int[] dp = new int[nums.length]; int max = 0; for (int i=0;i&lt;nums.length;i++)&#123; dp[i] = 1; for (int j=0;j&lt;i;j++)&#123; if (nums[j]&lt;nums[i])&#123; dp[i] = Math.max(dp[i],dp[j]+1); &#125; &#125; max = Math.max(max,dp[i]); &#125; return max;&#125; 解法二 解题思路：通过二分查找，从nums第一个元素添加到新数组dp中，然后不断和nums的之后元素进行比较，只要比dp数组中元素大，添加进来，增加上升序列的result长度，如果比dp数组中元素小，替换dp中的元素，遍历完nums数组，result+1就是nums中最长上升子序列的长度 1234567891011121314151617181920212223242526public static int lengthOfLIS(int[] nums) &#123; if(nums.length==0)&#123; return 0; &#125; int result=0; int[] dp=new int[nums.length]; dp[0]=nums[0]; for(int i=1;i&lt;nums.length;i++)&#123; if(nums[i]&gt;dp[result])&#123; dp[++result]=nums[i]; &#125;else&#123; int left=0; int right=result; while(left&lt;right)&#123; int mid=(left+right)/2; if(nums[i]&lt;=dp[mid])&#123; right=mid; &#125;else&#123; left=mid+1; &#125; &#125; dp[right]=nums[i]; &#125; &#125; return result+1;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>中等</tag>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[完全平方数]]></title>
     <url>%2F2019%2F04%2F28%2F%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：279 给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, …）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。 示例 1: 123输入: n = 12输出: 3 解释: 12 = 4 + 4 + 4. 示例 2: 123输入: n = 13输出: 2解释: 13 = 4 + 9. 我的解答 解法一 解题思路：四平方定理： 任何一个正整数都可以表示成不超过四个整数的平方之和。 推论：满足四数平方和定理的数n（四个整数的情况），必定满足 n=4^a(8b+7) 12345678910111213141516171819202122public int numSquares(int n) &#123; //先根据上面提到的公式来缩小n while (n % 4 == 0)&#123; n /= 4; &#125; if (n % 8 == 7)&#123;//满足四平方和定理 return 4; &#125; //在判断缩小后的数是否可以由一个数的平方或者两个数平方的和组成 int a = 0; while(a * a &lt; n) &#123; int b = (int) Math.sqrt(n - a * a); if(a * a + b * b == n) &#123; if(a == 0 &amp;&amp; b == 0) return 0; else if(a != 0 &amp;&amp; b != 0) return 2; else return 1; &#125; a = a + 1; &#125; //如果不是返回3 return 3;&#125; 解法二：动态规划 解题思路：采用动态规划实现。用 dp[i] 数组存储第 i 个数的完美平方数。递推式为：dp[i] = Math.max(dp[j] + dp[i-j], dp[i]，认为 i 的完全平方数是从和为 i 的两个完全平方数 dp[j] 和 dp[i-j]之和，然后从中取最小 123456789101112131415public int numSquares(int n) &#123; int[] dp = new int[n+1]; Arrays.fill(dp, Integer.MAX_VALUE); dp[0] = 0; for (int i=1;i&lt;=n;i++)&#123; int min = Integer.MAX_VALUE; int j = 1; while(i - j*j &gt;= 0) &#123; min = Math.min(min, dp[i - j*j] + 1); j++; &#125; dp[i] = min; &#125; return dp[n];&#125;]]></content>
