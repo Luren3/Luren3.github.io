@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[和为K的子数组]]></title>
+    <url>%2F2019%2F04%2F30%2F%E5%92%8C%E4%B8%BAK%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[LeetCode 题号：560 给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。 示例 1 : 12输入:nums = [1,1,1], k = 2输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。 说明 : 数组的长度为 [1, 20,000]。 数组中元素的范围是 [-1000, 1000] ，且整数 k 的范围是 [-1e7, 1e7]。 我的解答 解题思路：通过map来记录，key为下标0到i的和，如果sum[i]-sum[j] = k,说明在[i,j]区间的和满足于k，map的value表示满足k的个数 12345678910111213public int subarraySum(int[] nums, int k) &#123; Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;(); map.put(0, 1); int sum = 0, ret = 0; for(int i = 0; i &lt; nums.length; ++i) &#123; sum += nums[i]; if(map.containsKey(sum-k)) ret += map.get(sum-k); map.put(sum, map.getOrDefault(sum, 0)+1); &#125; return ret;&#125; 延伸一道阿里的面试题 给出一个正整数数组和一个数，返回一个数组走那个连续元素的和等于所给数的子数组 加分时间复杂度为2n 我的解答 解法一(暴力法) 123456789101112131415161718192021222324public static int[] continuousSum(int[] nums, int k)&#123; int sum = 0; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); boolean isFind = false; for (int i=0;i&lt;nums.length;i++)&#123; sum = 0; for (int j=i;j&lt;nums.length;j++)&#123; sum +=nums[j]; list.add(nums[j]); if (sum == k)&#123; isFind = true; break; &#125; &#125; if (isFind) break; list.clear(); &#125; int[] arr = new int[list.size()]; for (int i=0;i&lt;list.size();i++)&#123; arr[i] = list.get(i); &#125; return arr;&#125; 解法二 解题思路：根据上面题解，如果map里包含sum-k，得出数组区间，就是想要的数组 1234567891011121314151617181920public static int[] continuousSum(int[] nums, int k)&#123; Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;(); int sum = 0, start = 0, end = 0; for(int i = 0; i &lt; nums.length; ++i) &#123; sum += nums[i]; end = i; //sum-k 等价于 sum(end) - sum(start) = k if(map.containsKey(sum-k))&#123; start = map.get(sum-k); break; &#125; map.put(sum, i); &#125; int[] arr = new int[end - start]; for (int i=start;i&lt;end;i++)&#123; arr[i-start] = nums[i+1]; &#125; return arr;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>中等</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[最长连续序列]]></title>
     <url>%2F2019%2F04%2F29%2F%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[LeetCode 题号：300 给定一个无序的整数数组，找到其中最长上升子序列的长度。 示例: 123输入: [10,9,2,5,3,7,101,18]输出: 4 解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。 说明: 可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。 你算法的时间复杂度应该为 O(n**2) 。 进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗? 我的解答 解法一 解题思路：通过动态规划，通过dp数组不断记录在每个数组下标时，子序列最大的上升长度，最后在比较dp数组中最大的子序列长度 1234567891011121314public static int lengthOfLIS(int[] nums) &#123; int[] dp = new int[nums.length]; int max = 0; for (int i=0;i&lt;nums.length;i++)&#123; dp[i] = 1; for (int j=0;j&lt;i;j++)&#123; if (nums[j]&lt;nums[i])&#123; dp[i] = Math.max(dp[i],dp[j]+1); &#125; &#125; max = Math.max(max,dp[i]); &#125; return max;&#125; 解法二 解题思路：通过二分查找，从nums第一个元素添加到新数组dp中，然后不断和nums的之后元素进行比较，只要比dp数组中元素大，添加进来，增加上升序列的result长度，如果比dp数组中元素小，替换dp中的元素，遍历完nums数组，result+1就是nums中最长上升子序列的长度 1234567891011121314151617181920212223242526public static int lengthOfLIS(int[] nums) &#123; if(nums.length==0)&#123; return 0; &#125; int result=0; int[] dp=new int[nums.length]; dp[0]=nums[0]; for(int i=1;i&lt;nums.length;i++)&#123; if(nums[i]&gt;dp[result])&#123; dp[++result]=nums[i]; &#125;else&#123; int left=0; int right=result; while(left&lt;right)&#123; int mid=(left+right)/2; if(nums[i]&lt;=dp[mid])&#123; right=mid; &#125;else&#123; left=mid+1; &#125; &#125; dp[right]=nums[i]; &#125; &#125; return result+1;&#125;]]></content>
@@ -32,8 +44,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>困难</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -455,8 +467,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>困难</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
