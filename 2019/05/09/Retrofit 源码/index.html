@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="框架,">
 
 
 
@@ -83,13 +83,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="MagicFrost">
-<meta property="og:url" content="http://magicfrost.cn/archives/2019/02/page/2/index.html">
+<meta name="description" content="Retrofit就是一个网络请求框架的封装，底层的网络请求默认使用的Okhttp，本身只是简化了用户网络请求的参数配置等，还能与Rxjava相结合，使用起来更加简洁方便。">
+<meta name="keywords" content="框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit源码">
+<meta property="og:url" content="http://magicfrost.cn/2019/05/09/Retrofit 源码/index.html">
 <meta property="og:site_name" content="MagicFrost">
+<meta property="og:description" content="Retrofit就是一个网络请求框架的封装，底层的网络请求默认使用的Okhttp，本身只是简化了用户网络请求的参数配置等，还能与Rxjava相结合，使用起来更加简洁方便。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/69497f55ly1g2vh1cn1jhj21670sxac8.jpg">
+<meta property="og:updated_time" content="2019-05-09T15:17:04.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MagicFrost">
+<meta name="twitter:title" content="Retrofit源码">
+<meta name="twitter:description" content="Retrofit就是一个网络请求框架的封装，底层的网络请求默认使用的Okhttp，本身只是简化了用户网络请求的参数配置等，还能与Rxjava相结合，使用起来更加简洁方便。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/69497f55ly1g2vh1cn1jhj21670sxac8.jpg">
 
 
 
@@ -119,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://magicfrost.cn/archives/2019/02/page/2/">
+  <link rel="canonical" href="http://magicfrost.cn/2019/05/09/Retrofit 源码/">
 
 
 
 
 
-  <title>归档 | MagicFrost</title>
+  <title>Retrofit源码 | MagicFrost</title>
   
 
 
@@ -154,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -280,250 +287,253 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://magicfrost.cn/2019/05/09/Retrofit 源码/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MagicFrost">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MagicFrost">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">Retrofit源码</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T23:15:00+08:00">
+                2019-05-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-09T23:17:04+08:00">
+                2019-05-09
+              </time>
+            
+          </span>
+
           
-        很好! 目前共计 107 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/19/爬楼梯/" itemprop="url">
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
               
-                <span itemprop="name">爬楼梯</span>
+                <a href="/2019/05/09/Retrofit 源码/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/05/09/Retrofit 源码/" itemprop="commentsCount"></span>
+                </a>
               
-            </a>
-        
-      </h2>
+            
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-19T13:14:00+08:00" content="2019-02-19">
-          02-19
-        </time>
-      </div>
+          
+          
+             <span id="/2019/05/09/Retrofit 源码/" class="leancloud_visitors" data-flag-title="Retrofit源码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-    </header>
-  </article>
+          
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  442
+                </span>
+              
 
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/18/第一个错误的版本/" itemprop="url">
-              
-                <span itemprop="name">第一个错误的版本</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-18T16:15:00+08:00" content="2019-02-18">
-          02-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/15/合并两个有序数组/" itemprop="url">
-              
-                <span itemprop="name">合并两个有序数组</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-15T10:29:00+08:00" content="2019-02-15">
-          02-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>Retrofit就是一个网络请求框架的封装，底层的网络请求默认使用的Okhttp，本身只是简化了用户网络请求的参数配置等，还能与Rxjava相结合，使用起来更加简洁方便。</p>
+<a id="more"></a>
+<p>下图是请求的流程图：<br><img src="http://ww1.sinaimg.cn/large/69497f55ly1g2vh1cn1jhj21670sxac8.jpg" alt=""></p>
+<h2 id="请求步骤"><a href="#请求步骤" class="headerlink" title="请求步骤"></a>请求步骤</h2><ol>
+<li>通过Builder模式，添加所需的baseUrl，callFactory(实际就是OkHttpClient)，converterFactories(将服务器返回数据转为所需的数据，例如bean)和callAdapterFactories（根据需要是否创建call转换器，例如RxJava）,创建Retrofit实例</li>
+<li>定义网络请求接口，并为接口中的方法添加注解</li>
+<li>通过动态代理为请求接口创建实例<ol>
+<li>通过loadServiceMethod()方法创建提供call转换器，数据转换器和发起网络请求必须的参数(前两者实际为Retrofit类创建)</li>
+<li>构建OkHttpCall</li>
+</ol>
+</li>
+<li>发起网络请求（实际执行是由OkHttp来做具体网络请求工作）</li>
+</ol>
+<h2 id="运用到的设计模式"><a href="#运用到的设计模式" class="headerlink" title="运用到的设计模式"></a><strong>运用到的设计模式</strong></h2><p><strong>外观模式：</strong>核心类就是Retrofit，我们只管配置Retrofit，然后做请求。剩下的事情就跟上层无关了，只需要等待回调。这样大大降低了系统的耦合度；</p>
+<p><strong>Builder模式：</strong>构建Retrofit所需的必须参数；</p>
+<p><strong>动态代理：</strong>动态代理就是拦截调用的那个方法，在方法前后来做一些操作。为网络请求接口动态创建实例；</p>
+<p><strong>工厂模式：</strong>通过工厂创建CallAdapter，Converter；</p>
+<p><strong>适配器模式：</strong>根据不同类型返回与之匹配的操作类，例如如果与RxJava配合就需要返回RxJava2CallAdapterFactory，不需要默认是ExecutorCallAdapterFactory；</p>
+<p><strong>装饰模式：</strong>跟静态代理类似，例如可以ExecutorCallAdapterFactory装饰类，实际操作者是OKHttpCall；</p>
+<p>参考文章<br><a href="https://www.jianshu.com/p/fb8d21978e38" target="_blank" rel="noopener">https://www.jianshu.com/p/fb8d21978e38</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/14/将有序数组转换为二叉搜索树/" itemprop="url">
-              
-                <span itemprop="name">将有序数组转换为二叉搜索树</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-14T10:32:00+08:00" content="2019-02-14">
-          02-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/13/二叉树的层次遍历/" itemprop="url">
-              
-                <span itemprop="name">二叉树的层次遍历</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-13T10:36:00+08:00" content="2019-02-13">
-          02-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/02/12/对称二叉树/" itemprop="url">
-              
-                <span itemprop="name">对称二叉树</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-02-12T11:23:00+08:00" content="2019-02-12">
-          02-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/矩阵中的最长递增路径/" rel="next" title="矩阵中的最长递增路径">
+                <i class="fa fa-chevron-left"></i> 矩阵中的最长递增路径
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/02/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2019/02/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -531,6 +541,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -551,8 +570,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -624,6 +652,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求步骤"><span class="nav-number">1.</span> <span class="nav-text">请求步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运用到的设计模式"><span class="nav-number">2.</span> <span class="nav-text">运用到的设计模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -784,6 +828,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
