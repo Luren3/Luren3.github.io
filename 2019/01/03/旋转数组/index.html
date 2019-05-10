@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="MagicFrost">
 <meta property="og:description" content="LeetCode题号:189 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-03T06:59:03.272Z">
+<meta property="og:updated_time" content="2019-05-10T08:03:56.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="旋转数组">
 <meta name="twitter:description" content="LeetCode题号:189 给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。">
@@ -344,8 +344,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-04-03T14:59:03+08:00">
-                2019-04-03
+              <time title="更新于" itemprop="dateModified" datetime="2019-05-10T16:03:56+08:00">
+                2019-05-10
               </time>
             
           </span>
@@ -416,7 +416,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  209
+                  400
                 </span>
               
 
@@ -432,7 +432,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -456,9 +456,21 @@
         <p>LeetCode题号:189</p>
 <p>给定一个数组，将数组中的元素向右移动 <em>k </em>个位置，其中 <em>k </em>是非负数。</p>
 <a id="more"></a>
-<p>示例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3,4,5,6,7] 和 k = 3</span><br><span class="line">输出: [5,6,7,1,2,3,4]</span><br><span class="line">解释:</span><br><span class="line">向右旋转 1 步: [7,1,2,3,4,5,6]</span><br><span class="line">向右旋转 2 步: [6,7,1,2,3,4,5]</span><br><span class="line">向右旋转 3 步: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure></p>
-<p>示例2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [-1,-100,3,99] 和 k = 2</span><br><span class="line">输出: [3,99,-1,-100]</span><br><span class="line">解释: </span><br><span class="line">向右旋转 1 步: [99,-1,-100,3]</span><br><span class="line">向右旋转 2 步: [3,99,-1,-100]</span><br></pre></td></tr></table></figure></p>
-<p>解决方案：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public void rotate(int[] nums, int k) &#123;</span><br><span class="line">    if (k &lt; 0) k =nums.length - Math.abs(k) % nums.length;</span><br><span class="line">    if (k &gt; nums.length) k = k % nums.length;</span><br><span class="line">    int[] numsCopy = nums.clone();</span><br><span class="line">    for (int i=0;i&lt;nums.length;i++)&#123;</span><br><span class="line">        if (i &lt; k)&#123;</span><br><span class="line">            nums[i] = numsCopy[nums.length - k + i];</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            nums[i] =  numsCopy[i - k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>示例1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,2,3,4,5,6,7] 和 k = 3</span><br><span class="line">输出: [5,6,7,1,2,3,4]</span><br><span class="line">解释:</span><br><span class="line">向右旋转 1 步: [7,1,2,3,4,5,6]</span><br><span class="line">向右旋转 2 步: [6,7,1,2,3,4,5]</span><br><span class="line">向右旋转 3 步: [5,6,7,1,2,3,4]</span><br></pre></td></tr></table></figure>
+<p>示例2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入: [-1,-100,3,99] 和 k = 2</span><br><span class="line">输出: [3,99,-1,-100]</span><br><span class="line">解释: </span><br><span class="line">向右旋转 1 步: [99,-1,-100,3]</span><br><span class="line">向右旋转 2 步: [3,99,-1,-100]</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<p><strong>解法一</strong></p>
+<blockquote>
+<p>解题思路：copy数组nums，先将数组下标nums.length - k-1下标后的数组放到0到k-1位置，再将之前0到nums.length - k-1移动到k-1下标之后</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void rotate(int[] nums, int k) &#123;</span><br><span class="line">    k = k % nums.length;</span><br><span class="line">    int[] numsCopy = nums.clone();</span><br><span class="line">    for (int i=0;i&lt;nums.length;i++)&#123;</span><br><span class="line">        if (i &lt; k)&#123;</span><br><span class="line">            nums[i] = numsCopy[nums.length - k + i];</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            nums[i] =  numsCopy[i - k];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>解法二</strong></p>
+<blockquote>
+<p>解题思路：现在数组从0到nums.length - 1 - k进行旋转，再将旋转后的数组从nums.length - k,到nums.length -1，最后将整个数组进行旋转</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public static void rotate(int[] nums, int k) &#123;</span><br><span class="line">    if (nums.length &lt; 2 || k &lt; 1 || k % nums.length == 0)</span><br><span class="line">        return;</span><br><span class="line">    if (k &gt; nums.length)</span><br><span class="line">        k = k % nums.length;</span><br><span class="line">    //1,2,3,4,5,6,7</span><br><span class="line">    reverse(nums, 0, nums.length - 1 - k);</span><br><span class="line">    //4,3,2,1,5,6,7</span><br><span class="line">    reverse(nums, nums.length - k, nums.length -1);</span><br><span class="line">    //4,3,2,1,7,6,5</span><br><span class="line">    reverse(nums, 0, nums.length - 1);</span><br><span class="line">    //5,6,7,1,2,3,4</span><br><span class="line">&#125;</span><br><span class="line">private static void reverse(int[] nums, int start, int end) &#123;</span><br><span class="line">    while (start &lt; end) &#123;</span><br><span class="line">        int temp = nums[start];</span><br><span class="line">        nums[start++] = nums[end];</span><br><span class="line">        nums[end--] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
