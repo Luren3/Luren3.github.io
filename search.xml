@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[HashMap源码]]></title>
+    <url>%2F2019%2F05%2F20%2FHashMap%E6%BA%90%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[HashMap是由数组和链表组合构成的数据结构，Java8中链表长度超过8时会把长度超过8的链表转化成红黑树；存取时都会根据键值计算出“类别”(hashCode)，再根据”类别”定位到数组中的位置并执行操作。 HashMap 的工作原理HashMap 是基于 hashing 的原理我们使用 put(key, value) 存储对象到 HashMap 中，使用 get(key) 从 HashMap 中获取对象。当我们给 put() 方法传递键和值时，我们先对键调用 hashCode() 方法，计算并返回的 hashCode 是用于找到 Map 数组的 bucket 位置来储存 Node 对象。这里关键点在于指出，HashMap 是在 bucket 中储存键对象和值对象，作为Map.Node 。 put 过程（JDK1.8） 对 Key 求 Hash 值，然后再计算下标 如果没有碰撞，直接放入桶中（碰撞的意思是计算得到的 Hash 值相同，需要放到同一个 bucket 中） 如果碰撞了，以链表的方式链接到后面 如果链表长度超过阀值（TREEIFY THRESHOLD==8），就把链表转成红黑树，链表长度低于6，就把红黑树转回链表 如果节点已经存在就替换旧值 如果桶满了（容量16*加载因子0.75），就需要 resize（扩容2倍后重排） JDK7流程，如图 JDK8流程，如图 7和8对比1.发生hash冲突时，Java7会在链表头部插入，Java8会在链表尾部插入2.扩容后转移数据，Java7转移前后链表顺序会倒置，Java8还是保持原来的顺序3.引入红黑树的Java8大程度得优化了HashMap的性能 线程不安全HashMap在put的时候，插入的元素超过了容量（由负载因子决定）的范围就会触发扩容操作，就是rehash，这个会重新将原数组的内容重新hash到新的扩容数组中，在多线程的环境下，存在同时其他的元素也在进行put操作，如果hash值相同，可能出现同时在同一数组下用链表表示，造成闭环，导致在get时会出现死循环，所以HashMap是线程不安全的。 参考文章https://juejin.im/post/5a23f82ff265da432003109b#heading-7http://www.importnew.com/31278.htmlhttps://blog.csdn.net/zaimeiyeshicengjing/article/details/81589953]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Retrofit源码]]></title>
     <url>%2F2019%2F05%2F09%2FRetrofit%20%E6%BA%90%E7%A0%81%2F</url>
     <content type="text"><![CDATA[Retrofit就是一个网络请求框架的封装，底层的网络请求默认使用的Okhttp，本身只是简化了用户网络请求的参数配置等，还能与Rxjava相结合，使用起来更加简洁方便。 下图是请求的流程图： 请求步骤 通过Builder模式，添加所需的baseUrl，callFactory(实际就是OkHttpClient)，converterFactories(将服务器返回数据转为所需的数据，例如bean)和callAdapterFactories（根据需要是否创建call转换器，例如RxJava）,创建Retrofit实例 定义网络请求接口，并为接口中的方法添加注解 通过动态代理为请求接口创建实例 通过loadServiceMethod()方法创建提供call转换器，数据转换器和发起网络请求必须的参数(前两者实际为Retrofit类创建) 构建OkHttpCall 发起网络请求（实际执行是由OkHttp来做具体网络请求工作） 运用到的设计模式外观模式：核心类就是Retrofit，我们只管配置Retrofit，然后做请求。剩下的事情就跟上层无关了，只需要等待回调。这样大大降低了系统的耦合度； Builder模式：构建Retrofit所需的必须参数； 动态代理：动态代理就是拦截调用的那个方法，在方法前后来做一些操作。为网络请求接口动态创建实例； 工厂模式：通过工厂创建CallAdapter，Converter； 适配器模式：根据不同类型返回与之匹配的操作类，例如如果与RxJava配合就需要返回RxJava2CallAdapterFactory，不需要默认是ExecutorCallAdapterFactory； 装饰模式：跟静态代理类似，例如可以ExecutorCallAdapterFactory装饰类，实际操作者是OKHttpCall； 参考文章https://www.jianshu.com/p/fb8d21978e38]]></content>
