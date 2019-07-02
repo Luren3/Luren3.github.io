@@ -41,8 +41,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>困难</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -101,8 +101,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>困难</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +524,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>动态规划</tag>
         <tag>困难</tag>
+        <tag>动态规划</tag>
       </tags>
   </entry>
   <entry>
@@ -911,7 +911,7 @@
   <entry>
     <title><![CDATA[回文链表]]></title>
     <url>%2F2019%2F01%2F28%2F%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[LeetCode 题号：234 请判断一个链表是否为回文链表。 示例21：12输入: 1-&gt;2输出: false 示例2：12输入: 1-&gt;2-&gt;2-&gt;1输出: true 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ 最优的解答：12345678910111213141516171819202122232425262728293031public static boolean isPalindrome(ListNode head) &#123; if (head == null || head.next == null) &#123; return true; &#125; if (head.next.next == null) &#123; return head.val == head.next.val; &#125; ListNode fast = head.next; ListNode slow = head; while (fast.next != null) &#123; // 不停的从slow的后一个开始遍历，知道找到值相同的节点 // 一次完成后，再移动到原节点的下一个节点开始，继续重复上面的步骤 if (fast.next.val == slow.val) &#123; if (fast.next.next != null) &#123; return false; &#125; fast.next = null; slow = slow.next; fast = slow.next; if (fast == null || fast.val == slow.val) &#123; return true; &#125; &#125; else &#123; fast = fast.next; &#125; &#125; return false;&#125; 我的解答：123456789101112131415public static boolean isPalindrome(ListNode head) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (head != null)&#123; list.add(head.val); head = head.next; &#125; for (int i = 0;i &lt; list.size() / 2;i ++)&#123; int num1 = list.get(i); int num2 = list.get(list.size() - 1 - i); if (num1 != num2)&#123; return false; &#125; &#125; return true;&#125;]]></content>
+    <content type="text"><![CDATA[LeetCode 题号：234 请判断一个链表是否为回文链表。 示例21：12输入: 1-&gt;2输出: false 示例2：12输入: 1-&gt;2-&gt;2-&gt;1输出: true 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？ 最优的解答： 123456789101112131415161718192021222324252627282930313233343536373839404142434445public static boolean isPalindrome(ListNode head) &#123; if (head == null || head.next == null) &#123; return true; &#125; // 找到链表的中点 ListNode mid = findMid(head); // 翻转中点后的链表 mid = reverseList(mid); // 比较两段链表 while (mid != null) &#123; if (head.val != mid.val) &#123; return false; &#125; head = head.next; mid = mid.next; &#125; return true;&#125;// 找到链表的中间节点private static ListNode findMid(ListNode head) &#123; if (head == null || head.next == null) &#123; return head; &#125; ListNode slow = head; ListNode fast = head; while(fast != null &amp;&amp; fast.next != null) &#123; slow = slow.next; fast = fast.next.next; &#125; return slow;&#125;//反转链表private static ListNode reverseList(ListNode head) &#123; if (head == null || head.next == null) &#123; return head; &#125; ListNode pre = null, now = head; while (now != null) &#123; ListNode next = now.next; now.next = pre; pre = now; now = next; &#125; return pre;&#125; 我的解答： 123456789101112131415public static boolean isPalindrome(ListNode head) &#123; List&lt;Integer&gt; list = new ArrayList&lt;&gt;(); while (head != null)&#123; list.add(head.val); head = head.next; &#125; for (int i = 0;i &lt; list.size() / 2;i ++)&#123; int num1 = list.get(i); int num2 = list.get(list.size() - 1 - i); if (num1 != num2)&#123; return false; &#125; &#125; return true;&#125;]]></content>
       <categories>
         <category>算法</category>
       </categories>
